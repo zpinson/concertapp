@@ -14,7 +14,7 @@ function App() {
           <Route exact path={["/"]}>
             <Home />
           </Route>
-            <Route exact path={["/events"]}>
+            <Route exact path={["/searchresult"]}>
               <SearchResults />
             </Route>
             {/* <Route exact path="/events/:id">
