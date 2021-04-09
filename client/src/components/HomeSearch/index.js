@@ -1,72 +1,3 @@
-// import React, { Component } from "react";
-
-// function HomeSearch() {
-//   return (
-//     <div class="container" id="main-container">
-//       <div class="valign-wrapper center-align" style={{padding: "0px"}}>
-//         <div class="center-align" style={{display: "flex"}}>
-//           <div class="card blue-grey darken-2">
-//             <div class="card-image waves-effect waves-block waves-light">
-//               <i id="tag" class="activator small material-icons right">
-//                 info_outline
-//               </i>
-//               <img src="../../../../images/MSG_SEA.jpg" />
-//             </div>
-//             <div class="card-content">
-//               <span
-//                 class="card-title col s4 offset-s4 left-align white-text"
-//                 type="text"
-//                 id="reveal-card"
-//               ></span>
-//             </div>
-//             <div
-//               style={{backgroundColor: "#212021", color: "white"}}
-//               class="card-reveal"
-//             >
-//               <span
-//                 class="card-title grey-text text-darken-4 center-align"
-//                 id="card-reveal-text"
-//               >
-//                 <h2 style={{color: "white"}}>Welcome to myConcerts!</h2>
-//                 <i class="material-icons white-text right">close</i>
-//               </span>
-//               <p>
-//                 <br />
-//               </p>
-//               <h5 style={{margin: "55px", lineHeight: "1.5"}}>
-//                 myConcerts is a program designed with the music lover in mind
-//                 and heart. Using API calls and database storage, we provide the
-//                 user with the ability to search for upcoming events using the
-//                 artist's name.
-//                 <p></p>
-//                 Sign-up with an account today to be able to store your favorite
-//                 artists for easy future reference as well as RSVP to events you
-//                 wish to attend. The saved information will appear on your user
-//                 dashboard when you sign in again!
-//               </h5>
-//             </div>
-//             <div class="container" id="form-container">
-//               <form id="search-form" class="col s12 center-align">
-//                 <input
-//                   id="search-input"
-//                   class="col s12 center-align"
-//                   type="text"
-//                   placeholder="Enter a musical artist's name"
-//                 />
-//                 <button class="btn btn-info btn-block col s4 offset-s4">
-//                   Show me concerts!
-//                 </button>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default HomeSearch;
-
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -75,12 +6,24 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import MusicNoteIcon from "@material-ui/icons/MusicNote";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
 import image from "../../images/MSG_SEA.jpg";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 750,
+  },
+  alignItemsAndJustifyContent: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "grey",
   },
 });
 
@@ -88,29 +31,52 @@ export default function ImgMediaCard() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Sea of MSG"
-          height="140"
-          image={image}
-          title="Sea of MSG"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            myConcerts
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            myConcerts Application info
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Where Am I?
-        </Button>
-      </CardActions>
-    </Card>
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justify="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Sea of MSG"
+            height="400"
+            image={image}
+            title="Sea of MSG"
+          />
+          <CardContent className={classes.alignItemsAndJustifyContent}>
+            <FormControl className={classes.margin}>
+              <InputLabel
+                htmlFor="input-with-icon-adornment"
+                style={{ color: "white" }}
+              >
+                Search for an Artist:
+              </InputLabel>
+              <Input
+                id="input-with-icon-adornment"
+                style={{ width: "250" }}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <MusicNoteIcon style={{ color: "white" }} />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </CardContent>
+        </CardActionArea>
+        <CardActions
+          className={classes.alignItemsAndJustifyContent}
+          style={{ backgroundColor: "grey" }}
+        >
+          <Button size="small" variant="contained" color="primary">
+            Show my Concerts!
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
   );
 }
