@@ -8,7 +8,7 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route exact path={["/", "/books"]}>
+          <Route exact path={["/events"]}>
             <Home />
           </Route>
           {/* <Route exact path="/events/:id">
