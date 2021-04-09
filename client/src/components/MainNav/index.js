@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ManNav() {
+export default function MainNav() {
   const classes = useStyles();
 
   return (
@@ -35,7 +35,7 @@ export default function ManNav() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            myConcerts
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
