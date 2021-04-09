@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import MainNav from "./components/MainNav/index";
 import SearchResults from "./pages/SearchResults";
 import './App.css';
 
@@ -14,7 +13,7 @@ function App() {
           <Route exact path={["/"]}>
             <Home />
           </Route>
-            <Route exact path={["/events"]}>
+            <Route exact path={["/searchresult"]}>
               <SearchResults />
             </Route>
             {/* <Route exact path="/events/:id">
