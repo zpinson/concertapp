@@ -1,27 +1,32 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import MainNav from "./components/MainNav/index";
 import SearchResults from "./pages/SearchResults";
+import UserLogin from "./pages/UserLogin";
+import UserSignup from "./pages/UserSignup";
 import './App.css';
 
 function App() {
   return (
     <Router>
-
-        <div>
-          <Switch>
+      <div>
+        <Switch>
           <Route exact path={["/"]}>
             <Home />
           </Route>
-            <Route exact path={["/events"]}>
-              <SearchResults />
-            </Route>
-            {/* <Route exact path="/events/:id">
+          <Route exact path={["/searchresult"]}>
+            <SearchResults />
+          </Route>
+          <Route exact path={["/login"]}>
+            <UserLogin />
+          </Route>
+          <Route exact path={["/signup"]}>
+            <UserSignup />
+          </Route>
+          {/* <Route exact path="/events/:id">
                     </Route> */}
-          </Switch>
-        </div>
-
+        </Switch>
+      </div>
     </Router>
   );
 }
