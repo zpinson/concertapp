@@ -37,7 +37,12 @@ export default function MainNav() {
           <Typography variant="h6" className={classes.title}>
             myConcerts
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button href="/login" color="inherit">
+            Login
+          </Button>
+          <Button href="/signup" color="inherit">
+            Signup
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
