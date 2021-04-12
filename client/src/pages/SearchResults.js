@@ -1,8 +1,9 @@
-import React, { Component, Card } from "react";
+import React, { Component } from "react";
 import { List, ListItem } from "../components/List";
 import MainNav from "../components/MainNav";
 import API from "../utils/API";
-import SearchForm from "../components/SearchForm/index";
+import SearchForm from "../components/SearchForm";
+import Card from "@material-ui/core/Card";
 
 class SearchResults extends Component {
   state = {
@@ -25,7 +26,7 @@ class SearchResults extends Component {
           const artist = event.lineup[0];
           const location = event.venue.location;
           const venue = event.venue.name;
-          const date = event.datetimeslice(0, 10);
+          const date = event.datetime.slice(0, 10);
           const time = event.datetime.slice(11, 16);
           const eventUrl = event.url;
 
@@ -47,7 +48,7 @@ class SearchResults extends Component {
       .catch((err) => console.log("API.getEvent err: ", err));
   };
 
-  handleEventkSave = (id) => {
+  handleEventSave = (id) => {
     const event = this.state.events.find((event) => event.id === id);
     console.log(event);
 
@@ -77,26 +78,32 @@ class SearchResults extends Component {
             <List className="overflow-container">
               {this.state.events.map((event) => (
                 <ListItem key={event.id}>
-                  <Card style={{ height: "60px", width: "60px" }}>
-                    <p to={"/searchresult/" + event.id}>
-                      <strong>
-                        {event.artist} at {event.venue}
-                      </strong>
-                    </p>
-                    <button
-                      onClick={() => this.handleEventSave(event.id)}
-                      className="btn btn-light"
-                    >
-                      Save
-                    </button>
-                  </Card>
+                  {/* <Card style={{ height: "60px", width: "60px" }}> */}
+                  <p>
+                    <strong>
+                      {event.artist} at {event.venue}
+                    </strong>
+                  </p>
+                  <p>{event.location}</p>
+                  <p>
+                    {event.date} at {event.time}
+                  </p>
+                  <button className="btn btn-light">
+                    <a href={event.eventUrl}>More Info</a>
+                  </button>
+                  <button
+                    onClick={() => this.handleEventSave(event.id)}
+                    className="btn btn-light"
+                  >
+                    Save
+                  </button>
+                  {/* </Card> */}
                 </ListItem>
               ))}
             </List>
           ) : (
             <h3>No Results to Display</h3>
           )}
-          ;
         </div>
       </div>
     );
