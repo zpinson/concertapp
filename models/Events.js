@@ -8,6 +8,7 @@ const EventSchema = new Schema({
   date: { type: String, required: true },
   time: { type: String, required: true },
   event_url: { type: String, required: true },
+  eventId: { type: String, required: true, unique: true }
 });
 
 const Event = mongoose.model("Event", EventSchema);
