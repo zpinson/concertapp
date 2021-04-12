@@ -1,8 +1,9 @@
+
 import React, { Component, Card } from "react";
 import { List, ListItem } from "../components/List";
 import MainNav from "../components/MainNav";
 import API from "../utils/API";
-import SearchForm from "../components/SearchForm";
+import SearchForm from "../components/SearchForm/index"
 
 
 class SearchResults extends Component {
@@ -41,8 +42,10 @@ class SearchResults extends Component {
       });
       console.log(events);
       this.setState({ events: events });
-    });
-    // .catch((err) => console.log("API.getEvent err: ", err));
+      
+
+    })
+    .catch((err) => console.log("API.getEvent err: ", err));
   };
 
   render() {
@@ -50,7 +53,12 @@ class SearchResults extends Component {
     return (
       <div>
         <MainNav />
-        <SearchForm handleFormSubmit={this.handleFormSubmit}/>
+        <SearchForm 
+        handleFormSubmit={this.handleFormSubmit}
+        handleInputChange={this.handleInputChange}
+        search={this.state.search}
+       
+        />
         <div className="container">
           {this.state.events ? (
             <List className="overflow-container">
