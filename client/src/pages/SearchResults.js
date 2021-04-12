@@ -25,7 +25,8 @@ class SearchResults extends Component {
           const artist = event.lineup[0];
           const location = event.venue.location;
           const venue = event.venue.name;
-          const date = event.datetime;
+          const date = event.datetimeslice(0, 10);
+          const time = event.datetime.slice(11, 16);
           const eventUrl = event.url;
 
           const eventObj = {
@@ -34,6 +35,7 @@ class SearchResults extends Component {
             location: location,
             venue: venue,
             date: date,
+            time: time,
             eventUrl: eventUrl,
           };
           console.log(eventObj);
@@ -53,8 +55,8 @@ class SearchResults extends Component {
       artist_name: event.lineup[0],
       location: event.venue.location,
       venue_name: event.venue.name,
-      date: event.datetime,
-      time: event.datetime,
+      date: event.datetime.slice(0, 10),
+      time: event.datetime.slice(11, 16),
       event_url: event.url,
       eventId: event.id,
     }).then(() => this.getEvent());
