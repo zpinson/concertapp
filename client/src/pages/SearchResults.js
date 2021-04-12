@@ -1,8 +1,9 @@
+
 import React, { Component, Card } from "react";
 import { List, ListItem } from "../components/List";
 import MainNav from "../components/MainNav";
 import API from "../utils/API";
-import SearchForm from "../components/SearchForm";
+import SearchForm from "../components/SearchForm/index"
 
 
 class SearchResults extends Component {
@@ -41,6 +42,8 @@ class SearchResults extends Component {
       });
       console.log(events);
       this.setState({ events: events });
+      
+
     })
     .catch((err) => console.log("API.getEvent err: ", err));
   };
@@ -54,7 +57,7 @@ class SearchResults extends Component {
         handleFormSubmit={this.handleFormSubmit}
         handleInputChange={this.handleInputChange}
         search={this.state.search}
-        events={this.state.events}
+       
         />
         <div className="container">
           {this.state.events ? (
