@@ -41,8 +41,8 @@ class SearchResults extends Component {
       });
       console.log(events);
       this.setState({ events: events });
-    });
-    // .catch((err) => console.log("API.getEvent err: ", err));
+    })
+    .catch((err) => console.log("API.getEvent err: ", err));
   };
 
   render() {
@@ -50,7 +50,12 @@ class SearchResults extends Component {
     return (
       <div>
         <MainNav />
-        <SearchForm handleFormSubmit={this.handleFormSubmit}/>
+        <SearchForm 
+        handleFormSubmit={this.handleFormSubmit}
+        handleInputChange={this.handleInputChange}
+        search={this.state.search}
+        events={this.state.events}
+        />
         <div className="container">
           {this.state.events ? (
             <List className="overflow-container">
