@@ -26,6 +26,7 @@ class Saved extends Component {
   };
 
   handleEventDelete = (id) => {
+    console.log(id)
     API.deleteEvent(id).then((res) => this.getSavedEvents());
   };
 
@@ -56,7 +57,7 @@ class Saved extends Component {
                   
                   </button>
                   <button
-                    onClick={() => this.handleEventDelete(event.id)}
+                    onClick={() => this.handleEventDelete(event._id)}
                     className="btn btn-light"
                   >
                     Delete
