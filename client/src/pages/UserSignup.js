@@ -16,7 +16,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
         DSD Designs
       </Link>{" "}
       {new Date().getFullYear()}
@@ -102,6 +102,7 @@ export default function UserLogin() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              href="/userprofile"
             >
               Sign Up
             </Button>

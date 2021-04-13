@@ -16,7 +16,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
         DSD Designs
       </Link>{" "}
       {new Date().getFullYear()}
@@ -64,7 +64,7 @@ export default function UserLogin() {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image}/>
+      <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -102,6 +102,7 @@ export default function UserLogin() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              href="/userprofile"
             >
               Log In
             </Button>
