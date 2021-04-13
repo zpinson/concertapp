@@ -80,10 +80,8 @@ class SearchResults extends Component {
             <List className="overflow-container">
               {this.state.events.map((event) => (
                 <ListItem key={event.id}>
-
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
                   <p>
-
                     <strong>
                       {event.artist} at {event.venue}
                     </strong>
@@ -93,11 +91,10 @@ class SearchResults extends Component {
                   <p>
                     {event.date} at {event.time}
                   </p>
-                  <button  className="btn btn-light">
+                  <button className="btn btn-light">
                     <a href={event.eventUrl}>
-                       More Info
+                      More Info
                     </a>
-                  
                   </button>
                   <button
                     onClick={() => this.handleEventSave(event.id)}
@@ -106,7 +103,6 @@ class SearchResults extends Component {
                     Save
                   </button>
                   {/* </Card> */}
-
                 </ListItem>
               ))}
             </List>
