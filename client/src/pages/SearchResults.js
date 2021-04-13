@@ -6,6 +6,7 @@ import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 import Jumbotron from "../components/Jumbotron";
 import HomeSearch from "../components/HomeSearch";
+// import image from "../components/images/MSG_SEA.jpg";
 
 
 class SearchResults extends Component {
