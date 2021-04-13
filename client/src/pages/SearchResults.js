@@ -1,11 +1,19 @@
-import React, { Component } from "react";
+
+
+import React, { Component, Card, useState } from "react";
+
 import { List, ListItem } from "../components/List";
 import MainNav from "../components/MainNav";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
-import Card from "@material-ui/core/Card";
+
+import Jumbotron from "../components/Jumbotron";
+import HomeSearch from "../components/HomeSearch";
+
+
 
 class SearchResults extends Component {
+
   state = {
     search: "",
     events: [],
@@ -79,12 +87,15 @@ class SearchResults extends Component {
             <List className="overflow-container">
               {this.state.events.map((event) => (
                 <ListItem key={event.id}>
+
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
                   <p>
+
                     <strong>
                       {event.artist} at {event.venue}
                     </strong>
                   </p>
+
                   <p>{event.location}</p>
                   <p>
                     {event.date} at {event.time}
@@ -102,6 +113,7 @@ class SearchResults extends Component {
                     Save
                   </button>
                   {/* </Card> */}
+
                 </ListItem>
               ))}
             </List>

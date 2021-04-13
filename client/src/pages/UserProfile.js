@@ -1,9 +1,10 @@
+
 import React, { Component } from "react";
 import { List, ListItem } from "../components/List";
-import MainNav from "../components/MainNav";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 import Card from "@material-ui/core/Card";
+import UserNav from "../components/UserNav";
 
 class Saved extends Component {
   state = {
@@ -33,7 +34,7 @@ class Saved extends Component {
   render() {
     return (
         <div>
-        <MainNav />
+         <UserNav />
        
         <div className="container">
           {this.state.events ? (
@@ -76,3 +77,4 @@ class Saved extends Component {
 }
 
 export default Saved;
+

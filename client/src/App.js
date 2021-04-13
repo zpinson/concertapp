@@ -27,6 +27,9 @@ function App() {
           <Route exact path={["/signup"]}>
             <UserSignup />
           </Route>
+          <Route exact path={["/userprofile"]}>
+            <UserProfile />
+          </Route>
           {/* <Route exact path="/events/:id">
                     </Route> */}
         </Switch>
