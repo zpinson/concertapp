@@ -110,7 +110,6 @@ export default function HomeSearch() {
         >
           <Button
             onClick={handleFormSubmit}
-            href="/searchresult"
             size="small"
             variant="contained"
             color="primary"

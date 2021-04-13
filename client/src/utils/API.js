@@ -11,6 +11,7 @@
 import axios from "axios";
 const BASEURL = "https://rest.bandsintown.com/v4/artists/";
 const APIKEY = "/events/?app_id=451f31b2808001d069daed45c32a9dac";
+const PAST = "&date=past"
 
 export default {
   getEvent: function (query) {
@@ -29,5 +30,9 @@ export default {
   saveEvent: function(eventData) {
     console.log(eventData)
     return axios.post("/api/events", eventData);
+  },
+  getPastEvents: function (query) {
+    console.log(query);
+    return axios.get(BASEURL + query + APIKEY + PAST);
   }
 };
