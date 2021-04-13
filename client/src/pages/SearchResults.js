@@ -1,16 +1,8 @@
-
-
 import React, { Component, Card, useState } from "react";
-
 import { List, ListItem } from "../components/List";
 import MainNav from "../components/MainNav";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
-
-import Jumbotron from "../components/Jumbotron";
-import HomeSearch from "../components/HomeSearch";
-
-
 
 class SearchResults extends Component {
 
