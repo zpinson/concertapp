@@ -16,6 +16,7 @@ module.exports = {
   create: function (req, res) {
     db.Event.create(req.body)
       .then((dbModel) => res.json(dbModel))
+      .then(console.log(req.body))
       .catch((err) => res.status(422).json(err));
   },
   update: function (req, res) {

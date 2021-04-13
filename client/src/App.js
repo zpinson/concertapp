@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import SearchResults from "./pages/SearchResults";
 import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
+import UserProfile from "./pages/UserProfile";
 import './App.css';
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
           </Route>
           <Route exact path={["/searchresult"]}>
             <SearchResults />
+          </Route>
+          <Route exact path={["/profile"]}>
+            <UserProfile />
           </Route>
           <Route exact path={["/login"]}>
             <UserLogin />

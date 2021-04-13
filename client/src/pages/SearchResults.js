@@ -53,14 +53,15 @@ class SearchResults extends Component {
     console.log(event);
 
     API.saveEvent({
-      artist_name: event.lineup[0],
-      location: event.venue.location,
-      venue_name: event.venue.name,
-      date: event.datetime.slice(0, 10),
-      time: event.datetime.slice(11, 16),
-      event_url: event.url,
+      artist_name: event.artist,
+      location: event.location,
+      venue_name: event.venue,
+      date: event.date,
+      time: event.time,
+      event_url: event.eventUrl,
       eventId: event.id,
-    }).then(() => this.getEvent());
+    }) .then(console.log("success!!!!"))
+    .catch(err => console.log(err));
   };
 
   render() {
@@ -88,8 +89,11 @@ class SearchResults extends Component {
                   <p>
                     {event.date} at {event.time}
                   </p>
-                  <button className="btn btn-light">
-                    <a href={event.eventUrl}>More Info</a>
+                  <button  className="btn btn-light">
+                    <a href={event.eventUrl}>
+                       More Info
+                    </a>
+                  
                   </button>
                   <button
                     onClick={() => this.handleEventSave(event.id)}
