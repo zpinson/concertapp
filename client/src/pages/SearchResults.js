@@ -1,6 +1,7 @@
 import React, { Component, Card, useState } from "react";
 import { List, ListItem } from "../components/List";
 import MainNav from "../components/MainNav";
+import Footer from "../components/Footer";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 
@@ -113,6 +114,7 @@ class SearchResults extends Component {
             <h3>No Results to Display</h3>
           )}
         </div>
+        <Footer />
       </div>
     );
   }
