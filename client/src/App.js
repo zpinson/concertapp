@@ -18,6 +18,9 @@ function App() {
           <Route exact path={["/searchresult"]}>
             <SearchResults />
           </Route>
+          <Route exact path={["/profile"]}>
+            <UserProfile />
+          </Route>
           <Route exact path={["/login"]}>
             <UserLogin />
           </Route>
