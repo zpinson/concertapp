@@ -27,15 +27,15 @@ class Saved extends Component {
   };
 
   handleEventDelete = (id) => {
-    console.log(id)
+    console.log(id);
     API.deleteEvent(id).then((res) => this.getSavedEvents());
   };
 
   render() {
     return (
-        <div>
-         <UserNav />
-       
+      <div>
+        <UserNav />
+
         <div className="container">
           {this.state.events ? (
             <List className="overflow-container">
@@ -51,11 +51,8 @@ class Saved extends Component {
                   <p>
                     {event.date} at {event.time}
                   </p>
-                  <button  className="btn btn-light">
-                    <a href={event.eventUrl}>
-                       More Info
-                    </a>
-                  
+                  <button className="btn btn-light">
+                    <a href={event.eventUrl}>More Info</a>
                   </button>
                   <button
                     onClick={() => this.handleEventDelete(event._id)}
