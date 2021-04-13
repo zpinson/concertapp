@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -11,9 +11,11 @@ import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
 import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
+// import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import image from "../../images/MSG_SEA.jpg";
+import SearchForm from "../SearchForm";
+import API from "../../utils/API";
 
 const useStyles = makeStyles({
   root: {
@@ -27,8 +29,41 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard() {
+export default function HomeSearch() {
   const classes = useStyles();
+  const [events, setEvent] = useState('');
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    API.getEvent(this.state.artist)
+      .then((res) => {
+        console.log("res.data: ", res.data);
+        const events = res.data.map((event) => {
+          console.log(event.lineup[0]);
+          const id = event.id;
+          const artist = event.lineup[0];
+          const location = event.venue.location;
+          const venue = event.venue.name;
+          const date = event.datetime;
+          const eventUrl = event.url;
+
+          const eventObj = {
+            id: id,
+            artist: artist,
+            location: location,
+            venue: venue,
+            date: date,
+            eventUrl: eventUrl,
+          };
+          console.log(eventObj);
+          return eventObj;
+        });
+        console.log(events);
+        this.setState({ events: events });
+      })
+      .catch((err) => console.log("API.getEvent err: ", err));
+      return events;
+  };
 
   return (
     <Grid
@@ -57,6 +92,7 @@ export default function ImgMediaCard() {
                 Search for an Artist:
               </InputLabel>
               <Input
+                onChange={(e) => setEvent(e.target.value)}
                 id="input-with-icon-adornment"
                 style={{ width: "250" }}
                 startAdornment={
@@ -72,11 +108,18 @@ export default function ImgMediaCard() {
           className={classes.alignItemsAndJustifyContent}
           style={{ backgroundColor: "grey" }}
         >
-          <Button size="small" variant="contained" color="primary">
+          <Button
+            onClick={handleFormSubmit}
+            href="/searchresult"
+            size="small"
+            variant="contained"
+            color="primary"
+          >
             Show my Concerts!
           </Button>
         </CardActions>
       </Card>
+      <SearchForm />
     </Grid>
   );
 }
