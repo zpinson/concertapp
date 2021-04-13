@@ -56,7 +56,6 @@ class SearchResults extends Component {
     return (
       <div>
         <MainNav />
-        <Jumbotron />
         <SearchForm 
         handleFormSubmit={this.handleFormSubmit}
         handleInputChange={this.handleInputChange}
