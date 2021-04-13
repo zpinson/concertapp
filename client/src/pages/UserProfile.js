@@ -18,7 +18,7 @@ class Saved extends Component {
     API.getSavedEvents()
       .then((res) => {
         this.setState({
-          eventss: res.data,
+          events: res.data,
         });
         console.log(this.state.events);
       })
