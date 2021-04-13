@@ -5,12 +5,12 @@ function Jumbotron() {
   return (
     <div
       style={{
-        height: 300,
+        height: 200,
         clear: "both",
         paddingTop: 120,
         textAlign: "center",
       }}
-      className="jumbotron"
+      className="jumbotron jumbotron-fluid"
       component="img"
       image={image}
       title="Sea of MSG"

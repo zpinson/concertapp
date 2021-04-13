@@ -26,6 +26,7 @@ function SearchForm(props) {
         <button
           type="submit"
           onClick={props.handleFormSubmit}
+          href={"/searchresult/?event=" + props}
           className="btn btn-success"
         >
           Search
