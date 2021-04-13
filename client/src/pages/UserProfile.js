@@ -54,6 +54,18 @@ class Saved extends Component {
                   <button className="btn btn-light">
                     <a href={event.eventUrl}>More Info</a>
                   </button>
+                  <button className="btn btn-light">
+                    <a
+                      href={
+                        ("https://www.google.com/maps/search/?api=1&query=" +
+                          event.latitude +
+                          "," +
+                          event.longitude)
+                      }
+                    >
+                      Direction
+                    </a>
+                  </button>
                   <button
                     onClick={() => this.handleEventDelete(event._id)}
                     className="btn btn-light"

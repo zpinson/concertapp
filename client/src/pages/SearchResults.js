@@ -62,6 +62,8 @@ class SearchResults extends Component {
       date: event.date,
       time: event.time,
       event_url: event.eventUrl,
+      longitude: event.longitude,
+      latitude: event.latitude,
       eventId: event.id,
     })
       .then(console.log("success!!!!"))
