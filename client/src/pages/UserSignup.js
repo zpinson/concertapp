@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: { image },
+    backgroundImage: `url(${image})`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
