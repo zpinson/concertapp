@@ -42,10 +42,10 @@ class SearchResults extends Component {
       });
       console.log(events);
       this.setState({ events: events });
-      
+
 
     })
-    .catch((err) => console.log("API.getEvent err: ", err));
+      .catch((err) => console.log("API.getEvent err: ", err));
   };
 
   render() {
@@ -53,23 +53,23 @@ class SearchResults extends Component {
     return (
       <div>
         <MainNav />
-        <SearchForm 
-        handleFormSubmit={this.handleFormSubmit}
-        handleInputChange={this.handleInputChange}
-        search={this.state.search}
-       
+        <SearchForm
+          handleFormSubmit={this.handleFormSubmit}
+          handleInputChange={this.handleInputChange}
+          search={this.state.search}
+
         />
         <div className="container">
           {this.state.events ? (
             <List className="overflow-container">
               {this.state.events.map((event) => (
                 <ListItem key={event.id}>
-                  <Card style={{height: "60px", width: "60px"}}>
-                  <p to={"/searchresult/" + event.id}>
-                    <strong>
-                      {event.artist} at {event.venue}
-                    </strong>
-                  </p>
+                  <Card style={{ height: "60px", width: "60px" }}>
+                    <p to={"/searchresult/" + event.id}>
+                      <strong>
+                        {event.artist} at {event.venue}
+                      </strong>
+                    </p>
                   </Card>
                 </ListItem>
               ))}
