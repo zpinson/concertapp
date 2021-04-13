@@ -13,7 +13,7 @@ import MusicNoteIcon from "@material-ui/icons/MusicNote";
 import FormControl from "@material-ui/core/FormControl";
 // import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import image from "../../images/MSG_SEA.jpg";
+import image from "../images/MSG_SEA.jpg";
 import SearchForm from "../SearchForm";
 import API from "../../utils/API";
 
