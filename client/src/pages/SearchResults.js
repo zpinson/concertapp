@@ -1,12 +1,15 @@
 
-import React, { Component, Card } from "react";
+import React, { Component, Card, useState } from "react";
 import { List, ListItem } from "../components/List";
 import MainNav from "../components/MainNav";
 import API from "../utils/API";
-import SearchForm from "../components/SearchForm/index"
+import SearchForm from "../components/SearchForm";
+import Jumbotron from "../components/Jumbotron";
+import HomeSearch from "../components/HomeSearch";
 
 
 class SearchResults extends Component {
+
   state = {
     search: "",
     events: [],
@@ -53,24 +56,23 @@ class SearchResults extends Component {
     return (
       <div>
         <MainNav />
-        <SearchForm
-          handleFormSubmit={this.handleFormSubmit}
-          handleInputChange={this.handleInputChange}
-          search={this.state.search}
-
+        <Jumbotron />
+        <SearchForm 
+        handleFormSubmit={this.handleFormSubmit}
+        handleInputChange={this.handleInputChange}
+        search={this.state.search}
+       
         />
         <div className="container">
           {this.state.events ? (
             <List className="overflow-container">
               {this.state.events.map((event) => (
                 <ListItem key={event.id}>
-                  <Card style={{ height: "60px", width: "60px" }}>
-                    <p to={"/searchresult/" + event.id}>
-                      <strong>
-                        {event.artist} at {event.venue}
-                      </strong>
-                    </p>
-                  </Card>
+                  <p to={"/searchresult/" + event.id}>
+                    <strong>
+                      {event.artist} at {event.venue}
+                    </strong>
+                  </p>
                 </ListItem>
               ))}
             </List>
