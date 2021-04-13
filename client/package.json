@@ -1,8 +1,8 @@
 {
-  "name": "client-concertapp",
+  "name": "concertapp",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
@@ -11,7 +11,12 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "express": "^4.16.3",
+    "if-env": "^1.0.4",
+    "materialize": "^1.0.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "mongoose": "^5.3.16"
   },
   "scripts": {
     "start": "react-scripts start",
