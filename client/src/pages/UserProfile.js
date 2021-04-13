@@ -52,7 +52,7 @@ class Saved extends Component {
                     {event.date} at {event.time}
                   </p>
                   <button className="btn btn-light">
-                    <a href={event.eventUrl}>More Info</a>
+                    <a href={event.event_url}>More Info</a>
                   </button>
                   <button className="btn btn-light">
                     <a
