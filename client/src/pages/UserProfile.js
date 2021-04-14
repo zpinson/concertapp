@@ -60,9 +60,7 @@ class Saved extends Component {
                           event.latitude +
                           "," +
                           event.longitude
-                        }
-                        target="_blank"
-                      >
+                        )} target="_blank">
                         Direction
                       </a>
                     </button>
