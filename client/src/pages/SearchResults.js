@@ -1,5 +1,5 @@
 import React, { Component, Card, useState } from "react";
-import { List, ListItem } from "../components/List";
+import { EventList, ListItem } from "../components/EventList";
 import MainNav from "../components/MainNav";
 import Footer from "../components/Footer";
 import API from "../utils/API";
@@ -83,7 +83,7 @@ class SearchResults extends Component {
         />
         <div className="container">
           {this.state.events ? (
-            <List className="overflow-container">
+            <EventList className="overflow-container">
               {this.state.events.map((event) => (
                 <ListItem key={event.id}>
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
@@ -98,16 +98,19 @@ class SearchResults extends Component {
                     {event.date} at {event.time}
                   </p>
                   <button className="btn btn-light">
-                    <a href={event.eventUrl}>More Info</a>
+                    <a href={event.eventUrl} target="_blank">
+                      More Info
+                    </a>
                   </button>
                   <button className="btn btn-light">
                     <a
                       href={
-                        ("https://www.google.com/maps/search/?api=1&query=" +
-                          event.latitude +
-                          "," +
-                          event.longitude)
+                        "https://www.google.com/maps/search/?api=1&query=" +
+                        event.latitude +
+                        "," +
+                        event.longitude
                       }
+                      target="_blank"
                     >
                       Direction
                     </a>
@@ -121,7 +124,7 @@ class SearchResults extends Component {
                   {/* </Card> */}
                 </ListItem>
               ))}
-            </List>
+            </EventList>
           ) : (
             <h3>No Results to Display</h3>
           )}

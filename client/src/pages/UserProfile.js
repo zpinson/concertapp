@@ -1,6 +1,5 @@
-
 import React, { Component } from "react";
-import { List, ListItem } from "../components/List";
+import { EventList, ListItem } from "../components/EventList";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 import Card from "@material-ui/core/Card";
@@ -34,56 +33,58 @@ class Saved extends Component {
   render() {
     return (
       <div>
-        <UserNav />
-
-        <div className="container">
-          {this.state.events ? (
-            <List className="overflow-container">
-              {this.state.events.map((event) => (
-                <ListItem key={event.id}>
-                  {/* <Card style={{ height: "60px", width: "60px" }}> */}
-                  <p>
-                    <strong>
-                      {event.artist} at {event.venue}
-                    </strong>
-                  </p>
-                  <p>{event.location}</p>
-                  <p>
-                    {event.date} at {event.time}
-                  </p>
-                  <button className="btn btn-light">
-                    <a href={event.event_url}>More Info</a>
-                  </button>
-                  <button className="btn btn-light">
-                    <a
-                      href={
-                        ("https://www.google.com/maps/search/?api=1&query=" +
+        <UserNav>
+          <div className="container">
+            {this.state.events ? (
+              <EventList className="overflow-container">
+                {this.state.events.map((event) => (
+                  <ListItem key={event.id}>
+                    {/* <Card style={{ height: "60px", width: "60px" }}> */}
+                    <p>
+                      <strong>
+                        {event.artist_name} at {event.venue_name}
+                      </strong>
+                    </p>
+                    <p>{event.location}</p>
+                    <p>
+                      {event.date} at {event.time}
+                    </p>
+                    <button className="btn btn-light">
+                      <a href={event.event_url} target="_blank">
+                        More Info
+                      </a>
+                    </button>
+                    <button className="btn btn-light">
+                      <a
+                        href={
+                          "https://www.google.com/maps/search/?api=1&query=" +
                           event.latitude +
                           "," +
-                          event.longitude)
-                      }
+                          event.longitude
+                        }
+                        target="_blank"
+                      >
+                        Direction
+                      </a>
+                    </button>
+                    <button
+                      onClick={() => this.handleEventDelete(event._id)}
+                      className="btn btn-light"
                     >
-                      Direction
-                    </a>
-                  </button>
-                  <button
-                    onClick={() => this.handleEventDelete(event._id)}
-                    className="btn btn-light"
-                  >
-                    Delete
-                  </button>
-                  {/* </Card> */}
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <h3>No Results to Display</h3>
-          )}
-        </div>
+                      Delete
+                    </button>
+                    {/* </Card> */}
+                  </ListItem>
+                ))}
+              </EventList>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          </div>
+        </UserNav>
       </div>
     );
   }
 }
 
 export default Saved;
-
