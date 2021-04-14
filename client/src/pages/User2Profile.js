@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -27,21 +28,7 @@ import API from "../utils/API";
 // import UpcomingEvents from "../UpcomingEvents";
 // import Orders from "./Orders";
 
-function getSavedEvents() {
-  API.getSavedEvents()
-    .then((res) => {
-      this.setState({
-        events: res.data,
-      });
-      console.log(this.state.events);
-    })
-    .catch((err) => console.log(err));
-}
 
-function handleEventDelete(id) {
-  console.log(id);
-  API.deleteEvent(id).then((res) => this.getSavedEvents());
-}
 
 function Copyright() {
   return (
@@ -63,18 +50,7 @@ function Copyright() {
 // componentDidMount() {
 //     this.getSavedEvents();
 //   };
-handleGetSavedEvents = () => {
-  state = {
-    events: [],
-  };
 
-  componentDidMount = () => {
-    this.getSavedEvents();
-  };
-
-  getSavedEvents().then(this.state.events);
-  console.log("handleGetSavedEvents: ", events);
-};
 
 const drawerWidth = 240;
 
@@ -155,18 +131,47 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  card: {
+    display: "inline-block",
+    margin: 5,
+    alignItems: "center",
+    justify: "center"
+  },
+  artistCard: {
+    minWidth: "100",
+    minHeight: "100",
+    margin: 5
+  },
+  eventText: {
+    display: "flex",
+    padding: 5,
+    align: "center",
+    justify: "center"
+  }
 }));
 
 export default function User2Profile() {
-  //   state = {
-  //     events: [],
-  //   };
+const classes = useStyles();
+const [events, setEvents] = React.useState([]);
+const [open, setOpen] = React.useState(true);
 
-  //   componentDidMount();
-  handleGetSavedEvents();
+  function getSavedEvents() {
+    API.getSavedEvents()
+      .then((res) => {
+        setEvents(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
 
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  function handleEventDelete(id) {
+    console.log(id);
+    API.deleteEvent(id).then((res) => this.getSavedEvents());
+  }
+
+  useEffect(() => {
+    getSavedEvents();
+  });
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -232,71 +237,86 @@ export default function User2Profile() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          {this.state.events ? (
-            <List className="overflow-container">
-              {this.state.events.map((event) => (
-                <ListItem>
-                  <Card>
-                    <Grid container spacing={3}>
-                      <Grid item xs={3}>
-                        <Paper className={classes.paper}>
-                          <strong>{event.artist_name}</strong>
-                        </Paper>
-                      </Grid>
-                      <Grid item xs={5}>
-                        <Paper className={classes.paper}>
-                          <strong>{event.venue_name}</strong>
-                          <p>{event.location}</p>
-                        </Paper>
-                      </Grid>
-                      <Grid item xs={4}>
-                        <Paper className={classes.paper}>
-                          <strong>{event.time}</strong>
-                          <p>{event.date}</p>
-                        </Paper>
-                      </Grid>
-                      <p>
-                        <Grid item xs={2}>
-                          <Paper className={classes.paper}>
-                            <Button>
-                              <a href={event.event_url} target="_blank">
-                                More Info
-                              </a>
-                            </Button>
-                          </Paper>
+          {events ? (
+            <div>
+              {events.map((event) => (
+                <Grid
+                  className="overflow-container"
+                  container
+                  spacing={3}
+                  key={event.id}
+                >
+                  <Grid item xs={12}>
+                    <Paper elevation={5}>
+                      <Grid container spacing={2}>
+                        <Grid item justify="center">
+                          <Card className={classes.card} variant="outlined">
+                            <CardContent className={classes.artistCard}>
+                              <Typography variant="h6" component="h2">
+                                /image/
+                              </Typography>
+                            </CardContent>
+                          </Card>
+                          <Typography
+                            className={classes.eventText}
+                            component="h2"
+                          >
+                            <strong>{event.artist_name}</strong>
+                          </Typography>
                         </Grid>
-                        <Grid item xs={2}>
-                          <Paper className={classes.paper}>
-                            <Button>
-                              <a
-                                href={
-                                  "https://www.google.com/maps/search/?api=1&query=" +
-                                  event.latitude +
-                                  "," +
-                                  event.longitude
-                                }
-                                target="_blank"
-                              >
-                                Direction
-                              </a>
-                            </Button>
-                          </Paper>
+                        <Grid item className={classes.artistCard}>
+                          <Typography
+                            className={classes.eventText}
+                            component="h2"
+                          >
+                            <strong>{event.venue_name}</strong>
+                          </Typography>
+                          <Typography
+                            className={classes.eventText}
+                            component="h2"
+                          >
+                            {event.location}
+                          </Typography>
                         </Grid>
-                        <Grid item xs={2}>
-                          <Paper className={classes.paper}>
-                            <Button
-                              onClick={() => this.handleEventDelete(event._id)}
-                            >
-                              Remove Event
-                            </Button>
-                          </Paper>
+                        <Grid item className={classes.artistCard}>
+                          <Typography
+                            className={classes.eventText}
+                            component="h2"
+                          >
+                            <strong>{event.time}</strong>
+                          </Typography>
+                          <Typography
+                            className={classes.eventText}
+                            component="h2"
+                          >
+                            {event.date}
+                          </Typography>
                         </Grid>
-                      </p>
-                    </Grid>
-                  </Card>
-                </ListItem>
+                      </Grid>
+                    </Paper>
+
+                    {/* <Card className={classes.card} variant="outlined">
+                      <CardContent className={classes.cardContent}>
+                        <Paper elevation={6} className={classes.paperRes}>
+                          <Typography variant="h5" component="h2">
+                            {event.date}
+                            <p>{event.time}</p>
+                          </Typography>
+                        </Paper>
+                        <Paper elevation={6} className={classes.paperRes}>
+                          <Typography variant="h5" component="h2">
+                            {event.artist_name}
+                          </Typography>
+                        </Paper>
+                        <Paper className={classes.paperRes}>
+                          <Typography>{event.venue_name}</Typography>
+                        </Paper>
+                      </CardContent>
+                    </Card> */}
+                  </Grid>
+                </Grid>
               ))}
-            </List>
+            </div>
           ) : (
             <h3>No Results to Display</h3>
           )}

@@ -37,7 +37,7 @@ class Saved extends Component {
 
         <div className="container">
           {this.state.events ? (
-            <List className="overflow-container">
+            <EventList className="overflow-container">
               {this.state.events.map((event) => (
                 <ListItem key={event.id}>
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
@@ -78,7 +78,6 @@ class Saved extends Component {
               <h3>No Results to Display</h3>
             )}
           </div>
-        </UserNav>
       </div>
     );
   }

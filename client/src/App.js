@@ -5,7 +5,7 @@ import SearchResults from "./pages/SearchResults";
 import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
 import UserProfile from "./pages/UserProfile";
-// import User2Profile from "./pages/User2Profile";
+import User2Profile from "./pages/User2Profile";
 import './App.css';
 
 function App() {
@@ -28,9 +28,9 @@ function App() {
           <Route exact path={["/signup"]}>
             <UserSignup />
           </Route>
-          {/* <Route exact path={["/usertest"]}>
+          <Route exact path={["/usertest"]}>
             <User2Profile />
-          </Route> */}
+          </Route>
           {/* <Route exact path="/events/:id">
                     </Route> */}
         </Switch>
