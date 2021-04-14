@@ -1,6 +1,5 @@
-
 import React, { Component } from "react";
-import { List, ListItem } from "../components/List";
+import { EventList, ListItem } from "../components/EventList";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 import Card from "@material-ui/core/Card";
@@ -60,30 +59,31 @@ class Saved extends Component {
                         ("https://www.google.com/maps/search/?api=1&query=" +
                           event.latitude +
                           "," +
-                          event.longitude)
-                      }
+                          event.longitude
+                        }
+                        target="_blank"
+                      >
+                        Direction
+                      </a>
+                    </button>
+                    <button
+                      onClick={() => this.handleEventDelete(event._id)}
+                      className="btn btn-light"
                     >
-                      Direction
-                    </a>
-                  </button>
-                  <button
-                    onClick={() => this.handleEventDelete(event._id)}
-                    className="btn btn-light"
-                  >
-                    Delete
-                  </button>
-                  {/* </Card> */}
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <h3>No Results to Display</h3>
-          )}
-        </div>
+                      Delete
+                    </button>
+                    {/* </Card> */}
+                  </ListItem>
+                ))}
+              </EventList>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          </div>
+        </UserNav>
       </div>
     );
   }
 }
 
 export default Saved;
-

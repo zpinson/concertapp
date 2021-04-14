@@ -16,7 +16,11 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+      <Link
+        color="inherit"
+        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        target="_blank"
+      >
         DSD Designs
       </Link>{" "}
       {new Date().getFullYear()}
