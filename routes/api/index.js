@@ -5,7 +5,7 @@ const pastEventRoutes = require("./pastevents");
 
 // For anything else, render the html page
 router.use("/events", eventRoutes);
-router.use("/pastevents", pasteventRoutes);
+router.use("/pastevents", pastEventRoutes);
 
 router.use(function (req, res) {
   res.sendFile(path.join(__dirname, "../../client/public/index.html"));
