@@ -1,5 +1,5 @@
 import React, { Component, Card, useState } from "react";
-import { List, ListItem } from "../components/List";
+import { EventList, ListItem } from "../components/EventList";
 import MainNav from "../components/MainNav";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
@@ -82,7 +82,7 @@ class SearchResults extends Component {
         />
         <div className="container">
           {this.state.events ? (
-            <List className="overflow-container">
+            <EventList className="overflow-container">
               {this.state.events.map((event) => (
                 <ListItem key={event.id}>
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
@@ -120,7 +120,7 @@ class SearchResults extends Component {
                   {/* </Card> */}
                 </ListItem>
               ))}
-            </List>
+            </EventList>
           ) : (
             <h3>No Results to Display</h3>
           )}
