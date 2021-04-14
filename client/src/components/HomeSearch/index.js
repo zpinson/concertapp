@@ -33,37 +33,37 @@ export default function HomeSearch() {
   const classes = useStyles();
   const [events, setEvent] = useState('');
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    API.getEvent(this.state.artist)
-      .then((res) => {
-        console.log("res.data: ", res.data);
-        const events = res.data.map((event) => {
-          console.log(event.lineup[0]);
-          const id = event.id;
-          const artist = event.lineup[0];
-          const location = event.venue.location;
-          const venue = event.venue.name;
-          const date = event.datetime;
-          const eventUrl = event.url;
+  // const handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   API.getEvent(this.state.artist)
+  //     .then((res) => {
+  //       console.log("res.data: ", res.data);
+  //       const events = res.data.map((event) => {
+  //         console.log(event.lineup[0]);
+  //         const id = event.id;
+  //         const artist = event.lineup[0];
+  //         const location = event.venue.location;
+  //         const venue = event.venue.name;
+  //         const date = event.datetime;
+  //         const eventUrl = event.url;
 
-          const eventObj = {
-            id: id,
-            artist: artist,
-            location: location,
-            venue: venue,
-            date: date,
-            eventUrl: eventUrl,
-          };
-          console.log(eventObj);
-          return eventObj;
-        });
-        console.log(events);
-        this.setState({ events: events });
-      })
-      .catch((err) => console.log("API.getEvent err: ", err));
-      return events;
-  };
+  //         const eventObj = {
+  //           id: id,
+  //           artist: artist,
+  //           location: location,
+  //           venue: venue,
+  //           date: date,
+  //           eventUrl: eventUrl,
+  //         };
+  //         console.log(eventObj);
+  //         return eventObj;
+  //       });
+  //       console.log(events);
+  //       this.setState({ events: events });
+  //     })
+  //     .catch((err) => console.log("API.getEvent err: ", err));
+  //     return events;
+  // };
 
   return (
     <Grid
@@ -109,7 +109,8 @@ export default function HomeSearch() {
           style={{ backgroundColor: "grey" }}
         >
           <Button
-            onClick={handleFormSubmit}
+            // onClick={handleFormSubmit}
+            href="/searchresult"
             size="small"
             variant="contained"
             color="primary"

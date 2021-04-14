@@ -52,7 +52,19 @@ class Saved extends Component {
                     {event.date} at {event.time}
                   </p>
                   <button className="btn btn-light">
-                    <a href={event.eventUrl}>More Info</a>
+                    <a href={event.event_url}>More Info</a>
+                  </button>
+                  <button className="btn btn-light">
+                    <a
+                      href={
+                        ("https://www.google.com/maps/search/?api=1&query=" +
+                          event.latitude +
+                          "," +
+                          event.longitude)
+                      }
+                    >
+                      Direction
+                    </a>
                   </button>
                   <button
                     onClick={() => this.handleEventDelete(event._id)}
