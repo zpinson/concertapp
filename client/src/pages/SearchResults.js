@@ -5,7 +5,6 @@ import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 
 class SearchResults extends Component {
-
   state = {
     search: "",
     events: [],
@@ -29,6 +28,8 @@ class SearchResults extends Component {
           const date = event.datetime.slice(0, 10);
           const time = event.datetime.slice(11, 16);
           const eventUrl = event.url;
+          const latitude = event.venue.latitude;
+          const longitude = event.venue.longitude;
 
           const eventObj = {
             id: id,
@@ -38,6 +39,8 @@ class SearchResults extends Component {
             date: date,
             time: time,
             eventUrl: eventUrl,
+            longitude: longitude,
+            latitude: latitude,
           };
           console.log(eventObj);
           return eventObj;
@@ -59,9 +62,12 @@ class SearchResults extends Component {
       date: event.date,
       time: event.time,
       event_url: event.eventUrl,
+      longitude: event.longitude,
+      latitude: event.latitude,
       eventId: event.id,
-    }) .then(console.log("success!!!!"))
-    .catch(err => console.log(err));
+    })
+      .then(console.log("success!!!!"))
+      .catch((err) => console.log(err));
   };
 
   render() {
@@ -79,10 +85,8 @@ class SearchResults extends Component {
             <List className="overflow-container">
               {this.state.events.map((event) => (
                 <ListItem key={event.id}>
-
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
                   <p>
-
                     <strong>
                       {event.artist} at {event.venue}
                     </strong>
@@ -92,11 +96,20 @@ class SearchResults extends Component {
                   <p>
                     {event.date} at {event.time}
                   </p>
-                  <button  className="btn btn-light">
-                    <a href={event.eventUrl}>
-                       More Info
+                  <button className="btn btn-light">
+                    <a href={event.eventUrl}>More Info</a>
+                  </button>
+                  <button className="btn btn-light">
+                    <a
+                      href={
+                        ("https://www.google.com/maps/search/?api=1&query=" +
+                          event.latitude +
+                          "," +
+                          event.longitude)
+                      }
+                    >
+                      Direction
                     </a>
-                  
                   </button>
                   <button
                     onClick={() => this.handleEventSave(event.id)}
@@ -105,7 +118,6 @@ class SearchResults extends Component {
                     Save
                   </button>
                   {/* </Card> */}
-
                 </ListItem>
               ))}
             </List>
