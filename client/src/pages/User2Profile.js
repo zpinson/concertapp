@@ -11,6 +11,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
@@ -22,13 +24,15 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import EventAvailableIcon from "@material-ui/icons/EventAvailable";
+import EventBusyIcon from '@material-ui/icons/EventBusy';
+import HomeIcon from "@material-ui/icons/Home";
+import DataUsageIcon from '@material-ui/icons/DataUsage';
 import API from "../utils/API";
 // import { mainListItems, secondaryListItems } from "./listItems";
 // import Stats from "../Stats";
 // import UpcomingEvents from "../UpcomingEvents";
 // import Orders from "./Orders";
-
-
 
 function Copyright() {
   return (
@@ -50,7 +54,6 @@ function Copyright() {
 // componentDidMount() {
 //     this.getSavedEvents();
 //   };
-
 
 const drawerWidth = 240;
 
@@ -135,25 +138,25 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     margin: 5,
     alignItems: "center",
-    justify: "center"
+    justify: "center",
   },
   artistCard: {
     minWidth: "100",
     minHeight: "100",
-    margin: 5
+    margin: 5,
   },
   eventText: {
     display: "flex",
     padding: 5,
     align: "center",
-    justify: "center"
-  }
+    justify: "center",
+  },
 }));
 
 export default function User2Profile() {
-const classes = useStyles();
-const [events, setEvents] = React.useState([]);
-const [open, setOpen] = React.useState(true);
+  const classes = useStyles();
+  const [events, setEvents] = React.useState([]);
+  const [open, setOpen] = React.useState(true);
 
   function getSavedEvents() {
     API.getSavedEvents()
@@ -171,7 +174,6 @@ const [open, setOpen] = React.useState(true);
   useEffect(() => {
     getSavedEvents();
   });
-
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -229,10 +231,34 @@ const [open, setOpen] = React.useState(true);
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        {/* <Divider />
-        <List>{mainListItems}</List>
         <Divider />
-        <List>{secondaryListItems}</List> */}
+        <List>
+          <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText>Home</ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <EventAvailableIcon />
+            </ListItemIcon>
+            <ListItemText>Upcoming Events</ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <EventBusyIcon />
+            </ListItemIcon>
+            <ListItemText>Past Events</ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <DataUsageIcon />
+            </ListItemIcon>
+            <ListItemText>myStats</ListItemText>
+          </ListItem>
+        </List>
+        <Divider />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
@@ -243,12 +269,18 @@ const [open, setOpen] = React.useState(true);
                 <Grid
                   className="overflow-container"
                   container
+                  direction="row"
                   spacing={3}
                   key={event.id}
                 >
                   <Grid item xs={12}>
                     <Paper elevation={5}>
-                      <Grid container spacing={2}>
+                      <Grid
+                        container
+                        justify="space-evenly"
+                        alignItems="center"
+                        spacing={3}
+                      >
                         <Grid item justify="center">
                           <Card className={classes.card} variant="outlined">
                             <CardContent className={classes.artistCard}>
@@ -264,7 +296,7 @@ const [open, setOpen] = React.useState(true);
                             <strong>{event.artist_name}</strong>
                           </Typography>
                         </Grid>
-                        <Grid item className={classes.artistCard}>
+                        <Grid wrap="nowrap" item className={classes.artistCard}>
                           <Typography
                             className={classes.eventText}
                             component="h2"
@@ -291,6 +323,48 @@ const [open, setOpen] = React.useState(true);
                           >
                             {event.date}
                           </Typography>
+                        </Grid>
+                      </Grid>
+                      <Grid container justify="center" spacing={4}>
+                        <Grid item>
+                          <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                          >
+                            <a href={event.event_url} target="_blank">
+                              More Info
+                            </a>
+                          </Button>
+                        </Grid>
+                        <Grid item>
+                          <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                          >
+                            <a
+                              href={
+                                "https://www.google.com/maps/search/?api=1&query=" +
+                                event.latitude +
+                                "," +
+                                event.longitude
+                              }
+                              target="_blank"
+                            >
+                              Get Directions
+                            </a>
+                          </Button>
+                        </Grid>
+                        <Grid item>
+                          <Button
+                            onClick={() => this.handleEventDelete(event._id)}
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                          >
+                            Remove Event
+                          </Button>
                         </Grid>
                       </Grid>
                     </Paper>
