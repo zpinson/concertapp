@@ -44,7 +44,7 @@ class Saved extends Component {
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
                   <p>
                     <strong>
-                      {event.artist} at {event.venue}
+                      {event.artist_name} at {event.venue_name}
                     </strong>
                   </p>
                   <p>{event.location}</p>

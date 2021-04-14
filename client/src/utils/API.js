@@ -17,6 +17,10 @@ export default {
   getEvent: function (query) {
     console.log(query)
     return axios.get(BASEURL + query + APIKEY);
+  }, 
+  getPastEvent: function (query) {
+    console.log(query)
+    return axios.get(BASEURL + query + APIKEY + PAST);
   },
   // Gets all saved books
   getSavedEvents: function() {

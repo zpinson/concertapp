@@ -12,6 +12,9 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from "@material-ui/core/Grid";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import { STATES } from "mongoose";
 
 const useStyles = makeStyles({
   root: {
@@ -59,6 +62,10 @@ function SearchForm(props) {
                   </InputAdornment>
                 }
               />
+              <FormControlLabel
+            control={<Checkbox checked={props.past} onChange={props.handleCheckedChange} name="past" />}
+            label="past"
+          />
             </FormControl>
           </CardContent>
         </CardActionArea>
