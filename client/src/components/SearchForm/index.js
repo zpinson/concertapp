@@ -46,7 +46,7 @@ function SearchForm(props) {
         <CardActionArea>
           <CardContent className={classes.alignItemsAndJustifyContent}>
             <FormControl className={classes.margin}>
-              <InputLabel htmlFor="event">Event:</InputLabel>
+              <InputLabel htmlFor="event">Enter an Artist:</InputLabel>
               <Input
                 value={props.search}
                 onChange={props.handleInputChange}

@@ -1,6 +1,5 @@
-
 import React, { Component } from "react";
-import { List, ListItem } from "../components/List";
+import { EventList, ListItem } from "../components/EventList";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 import Card from "@material-ui/core/Card";
@@ -38,7 +37,7 @@ class Saved extends Component {
 
         <div className="container">
           {this.state.events ? (
-            <List className="overflow-container">
+            <EventList className="overflow-container">
               {this.state.events.map((event) => (
                 <ListItem key={event.id}>
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
@@ -61,29 +60,30 @@ class Saved extends Component {
                           event.latitude +
                           "," +
                           event.longitude)
-                      }
+                        }
+                        target="_blank"
+                      >
+                        Direction
+                      </a>
+                    </button>
+                    <button
+                      onClick={() => this.handleEventDelete(event._id)}
+                      className="btn btn-light"
                     >
-                      Direction
-                    </a>
-                  </button>
-                  <button
-                    onClick={() => this.handleEventDelete(event._id)}
-                    className="btn btn-light"
-                  >
-                    Delete
-                  </button>
-                  {/* </Card> */}
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <h3>No Results to Display</h3>
-          )}
-        </div>
+                      Delete
+                    </button>
+                    {/* </Card> */}
+                  </ListItem>
+                ))}
+              </EventList>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          </div>
+        
       </div>
     );
   }
 }
 
 export default Saved;
-

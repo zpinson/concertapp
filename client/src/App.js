@@ -7,6 +7,8 @@ import UserSignup from "./pages/UserSignup";
 import UserProfile from "./pages/UserProfile";
 import SavedEvents from "./pages/SavedEvents";
 import "./App.css";
+// import User2Profile from "./pages/User2Profile";
+import './App.css';
 
 function App() {
   return (
@@ -31,9 +33,9 @@ function App() {
           <Route exact path={["/signup"]}>
             <UserSignup />
           </Route>
-          <Route exact path={["/userprofile"]}>
-            <UserProfile />
-          </Route>
+          {/* <Route exact path={["/usertest"]}>
+            <User2Profile />
+          </Route> */}
           {/* <Route exact path="/events/:id">
                     </Route> */}
         </Switch>
