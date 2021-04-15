@@ -168,7 +168,7 @@ export default function User2Profile() {
 
   function handleEventDelete(id) {
     console.log(id);
-    API.deleteEvent(id).then((res) => this.getSavedEvents());
+    API.deleteEvent(id).then((res) => getSavedEvents());
   }
 
   useEffect(() => {
@@ -331,10 +331,10 @@ export default function User2Profile() {
                             size="small"
                             variant="contained"
                             color="primary"
+                            href={event.event_url}
+                            target="_blank"
                           >
-                            <a href={event.event_url} target="_blank">
-                              More Info
-                            </a>
+                            More Info
                           </Button>
                         </Grid>
                         <Grid item>
@@ -342,23 +342,20 @@ export default function User2Profile() {
                             size="small"
                             variant="contained"
                             color="primary"
+                            href={
+                              "https://www.google.com/maps/search/?api=1&query=" +
+                              event.latitude +
+                              "," +
+                              event.longitude
+                            }
+                            target="_blank"
                           >
-                            <a
-                              href={
-                                "https://www.google.com/maps/search/?api=1&query=" +
-                                event.latitude +
-                                "," +
-                                event.longitude
-                              }
-                              target="_blank"
-                            >
-                              Get Directions
-                            </a>
+                            Get Directions
                           </Button>
                         </Grid>
                         <Grid item>
                           <Button
-                            onClick={() => this.handleEventDelete(event._id)}
+                            onClick={() => handleEventDelete(event._id)}
                             size="small"
                             variant="contained"
                             color="primary"
