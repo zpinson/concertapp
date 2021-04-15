@@ -4,6 +4,7 @@ import MainNav from "../components/MainNav";
 import Footer from "../components/Footer";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
+import Button from "@material-ui/core/Button";
 
 class SearchResults extends Component {
   state = {
@@ -25,7 +26,8 @@ class SearchResults extends Component {
     if (this.state.past === false) {
       API.getEvent(this.state.search)
         .then((res) => {
-          console.log("res.data: ", res.data);
+          console.log("res.data: ", res.data[0].artist.thumb_url);
+          const thumbImg = res.data[0].artist.thumb_url;
           const events = res.data.map((event) => {
             console.log(event.lineup[0]);
             const id = event.id;
@@ -37,6 +39,7 @@ class SearchResults extends Component {
             const eventUrl = event.url;
             const latitude = event.venue.latitude;
             const longitude = event.venue.longitude;
+            const artistImg = thumbImg;
 
             const eventObj = {
               id: id,
@@ -48,6 +51,7 @@ class SearchResults extends Component {
               eventUrl: eventUrl,
               longitude: longitude,
               latitude: latitude,
+              artistImg: artistImg
             };
             console.log(eventObj);
             return eventObj;
@@ -60,6 +64,9 @@ class SearchResults extends Component {
       API.getPastEvent(this.state.search)
         .then((res) => {
           console.log("res.data: ", res.data);
+          const pastImg = res.data[0].artist.thumb_url
+          console.log(pastImg);
+          
           const events = res.data.map((event) => {
             console.log(event.lineup[0]);
             const id = event.id;
@@ -71,6 +78,8 @@ class SearchResults extends Component {
             const eventUrl = event.url;
             const latitude = event.venue.latitude;
             const longitude = event.venue.longitude;
+            const artistImg = pastImg;
+            console.log(artistImg);
 
             const eventObj = {
               id: id,
@@ -82,6 +91,7 @@ class SearchResults extends Component {
               eventUrl: eventUrl,
               longitude: longitude,
               latitude: latitude,
+              artistImg: artistImg
             };
             console.log(eventObj);
             return eventObj;
@@ -107,10 +117,11 @@ class SearchResults extends Component {
         longitude: event.longitude,
         latitude: event.latitude,
         eventId: event.id,
+        artistImg: event.artistImg
       })
         .then(console.log("success!!!!"))
         .catch((err) => console.log(err));
-    }else{
+    } else {
       API.savePastEvent({
         artist_name: event.artist,
         location: event.location,
@@ -121,6 +132,7 @@ class SearchResults extends Component {
         longitude: event.longitude,
         latitude: event.latitude,
         eventId: event.id,
+        artistImg: event.artistImg
       })
         .then(console.log("success!!!!"))
         .catch((err) => console.log(err));
@@ -154,12 +166,12 @@ class SearchResults extends Component {
                   <p>
                     {event.date} at {event.time}
                   </p>
-                  <button className="btn btn-light">
+                  <Button className="btn btn-light">
                     <a href={event.eventUrl} target="_blank">
                       More Info
                     </a>
-                  </button>
-                  <button className="btn btn-light">
+                  </Button>
+                  <Button className="btn btn-light">
                     <a
                       href={
                         "https://www.google.com/maps/search/?api=1&query=" +
@@ -171,13 +183,13 @@ class SearchResults extends Component {
                     >
                       Direction
                     </a>
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     onClick={() => this.handleEventSave(event.id)}
                     className="btn btn-light"
                   >
                     Save
-                  </button>
+                  </Button>
                   {/* </Card> */}
                 </ListItem>
               ))}

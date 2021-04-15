@@ -31,10 +31,6 @@ import DataUsageIcon from '@material-ui/icons/DataUsage';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import blue from "@material-ui/core/colors/blue";
 import API from "../utils/API";
-// import { mainListItems, secondaryListItems } from "./listItems";
-// import Stats from "../Stats";
-// import UpcomingEvents from "../UpcomingEvents";
-// import Orders from "./Orders";
 
 function Copyright() {
   return (
@@ -48,14 +44,6 @@ function Copyright() {
     </Typography>
   );
 }
-
-// handleGetSavedEvents = () => {
-//     getSavedEvents()
-//     .than(tell it what to return)
-// }
-// componentDidMount() {
-//     this.getSavedEvents();
-//   };
 
 const drawerWidth = 240;
 
