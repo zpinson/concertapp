@@ -151,6 +151,9 @@ const useStyles = makeStyles((theme) => ({
     align: "center",
     justify: "center",
   },
+  resPaper: {
+    margin: 500
+  }
 }));
 
 export default function User2Profile() {
@@ -233,25 +236,25 @@ export default function User2Profile() {
         </div>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem button component="a" href="/">
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText>Home</ListItemText>
           </ListItem>
-          <ListItem button>
+          <ListItem button component="a" href="/usertest">
             <ListItemIcon>
               <EventAvailableIcon />
             </ListItemIcon>
             <ListItemText>Upcoming Events</ListItemText>
           </ListItem>
-          <ListItem button>
+          <ListItem button component="a" href="/pastevents">
             <ListItemIcon>
               <EventBusyIcon />
             </ListItemIcon>
             <ListItemText>Past Events</ListItemText>
           </ListItem>
-          <ListItem button>
+          <ListItem button component="a" href="/stats">
             <ListItemIcon>
               <DataUsageIcon />
             </ListItemIcon>
@@ -274,7 +277,7 @@ export default function User2Profile() {
                   key={event.id}
                 >
                   <Grid item xs={12}>
-                    <Paper elevation={5}>
+                    <Paper className="resPaper" elevation={5}>
                       <Grid
                         container
                         justify="space-evenly"
@@ -365,25 +368,6 @@ export default function User2Profile() {
                         </Grid>
                       </Grid>
                     </Paper>
-
-                    {/* <Card className={classes.card} variant="outlined">
-                      <CardContent className={classes.cardContent}>
-                        <Paper elevation={6} className={classes.paperRes}>
-                          <Typography variant="h5" component="h2">
-                            {event.date}
-                            <p>{event.time}</p>
-                          </Typography>
-                        </Paper>
-                        <Paper elevation={6} className={classes.paperRes}>
-                          <Typography variant="h5" component="h2">
-                            {event.artist_name}
-                          </Typography>
-                        </Paper>
-                        <Paper className={classes.paperRes}>
-                          <Typography>{event.venue_name}</Typography>
-                        </Paper>
-                      </CardContent>
-                    </Card> */}
                   </Grid>
                 </Grid>
               ))}
@@ -391,27 +375,6 @@ export default function User2Profile() {
           ) : (
             <h3>No Results to Display</h3>
           )}
-
-          {/* <Grid container spacing={3}>
-            Chart
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Stats />
-              </Paper>
-            </Grid>
-            Upcoming Events
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <UpcomingEvents />
-              </Paper>
-            </Grid> */}
-          {/* Recent Orders */}
-          {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid> */}
-          {/* </Grid> */}
           <Box pt={4}>
             <Copyright />
           </Box>
