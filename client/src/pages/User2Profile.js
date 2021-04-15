@@ -62,7 +62,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    backgroundColor: "#524e56",
+    backgroundColor: "#6d6d78",
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     position: "relative",
     whiteSpace: "nowrap",
-    backgroundColor: "#6363ea",
+    backgroundColor: "#9393ef",
     width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
@@ -142,7 +142,7 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     margin: 5,
     alignItems: "center",
-    justify: "center",
+    justify: "space-between",
   },
   artistCard: {
     minWidth: "100",
@@ -157,7 +157,9 @@ const useStyles = makeStyles((theme) => ({
   },
   resPaper: {
     margin: 5,
-    backgroundColor: "#6363ea"
+    marginTop: 20,
+    padding: 20,
+    backgroundColor: "#9393ef"
   },
 }));
 
@@ -181,7 +183,7 @@ export default function User2Profile() {
 
   useEffect(() => {
     getSavedEvents();
-  });
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -251,13 +253,13 @@ export default function User2Profile() {
             <ListItemIcon>
               <EventAvailableIcon />
             </ListItemIcon>
-            <ListItemText>Upcoming Events</ListItemText>
+            <ListItemText>myUpcomingEvents</ListItemText>
           </ListItem>
           <ListItem button component="a" href="/pastevents">
             <ListItemIcon>
               <EventBusyIcon />
             </ListItemIcon>
-            <ListItemText>Past Events</ListItemText>
+            <ListItemText>myPastEvents</ListItemText>
           </ListItem>
           <ListItem button component="a" href="/stats">
             <ListItemIcon>
@@ -293,12 +295,12 @@ export default function User2Profile() {
                     <Paper className={classes.resPaper} elevation={5}>
                       <Grid
                         container
-                        justify="space-evenly"
+                        justify="space-between"
                         alignItems="center"
                         spacing={3}
                       >
-                        <Grid item justify="center">
-                          <Card className={classes.card} variant="outlined">
+                        <Grid item>
+                          <Card className={classes.card} variant="outlined" style={{margin: 5}}>
                             <CardContent className={classes.artistCard}>
                               <Typography variant="h6" component="h2">
                                 /image/
@@ -315,7 +317,7 @@ export default function User2Profile() {
                         <Grid wrap="nowrap" item className={classes.artistCard}>
                           <Typography
                             className={classes.eventText}
-                            component="h2"
+                            component="h2" variant="h5"
                           >
                             <strong>{event.venue_name}</strong>
                           </Typography>
@@ -341,6 +343,7 @@ export default function User2Profile() {
                           </Typography>
                         </Grid>
                       </Grid>
+                      <p></p>
                       <Grid container justify="center" spacing={4}>
                         <Grid item>
                           <Button
