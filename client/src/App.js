@@ -15,8 +15,8 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route exact path={["/"]}>
-            <Home />
+          <Route exact path="/" component={Home}>
+            {/* <Home /> */}
           </Route>
           <Route exact path={["/searchresult"]}>
             <SearchResults />
