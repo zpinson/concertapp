@@ -5,7 +5,7 @@ import SearchResults from "./pages/SearchResults";
 import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
 import UserProfile from "./pages/UserProfile";
-import SavedEvents from "./pages/SavedEvents";
+import SavedEvents from "./pages/PastEvents";
 import "./App.css";
 // import User2Profile from "./pages/User2Profile";
 import './App.css';
@@ -24,7 +24,7 @@ function App() {
           <Route exact path={["/profile"]}>
             <UserProfile />
           </Route>
-          <Route exact path={["/saved"]}>
+          <Route exact path={["/pastevents"]}>
             <SavedEvents />
           </Route>
           <Route exact path={["/login"]}>

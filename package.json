@@ -35,6 +35,7 @@
     "materialize": "^1.0.0",
     "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.3.16",
+    "morgan": "^1.10.0",
     "node": "^15.12.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
