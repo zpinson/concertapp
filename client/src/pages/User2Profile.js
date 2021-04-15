@@ -28,6 +28,8 @@ import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from '@material-ui/icons/EventBusy';
 import HomeIcon from "@material-ui/icons/Home";
 import DataUsageIcon from '@material-ui/icons/DataUsage';
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import blue from "@material-ui/core/colors/blue";
 import API from "../utils/API";
 // import { mainListItems, secondaryListItems } from "./listItems";
 // import Stats from "../Stats";
@@ -60,6 +62,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    backgroundColor: "#524e56",
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -98,6 +101,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     position: "relative",
     whiteSpace: "nowrap",
+    backgroundColor: "#6363ea",
     width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
@@ -152,8 +156,9 @@ const useStyles = makeStyles((theme) => ({
     justify: "center",
   },
   resPaper: {
-    margin: 500
-  }
+    margin: 5,
+    backgroundColor: "#6363ea"
+  },
 }));
 
 export default function User2Profile() {
@@ -262,6 +267,14 @@ export default function User2Profile() {
           </ListItem>
         </List>
         <Divider />
+        <List>
+          <ListItem button component="a" href="/" >
+            <ListItemIcon>
+              <ExitToAppIcon color="inherit" />
+            </ListItemIcon>
+            <ListItemText>Log Out</ListItemText>
+          </ListItem>
+        </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
@@ -277,7 +290,7 @@ export default function User2Profile() {
                   key={event.id}
                 >
                   <Grid item xs={12}>
-                    <Paper className="resPaper" elevation={5}>
+                    <Paper className={classes.resPaper} elevation={5}>
                       <Grid
                         container
                         justify="space-evenly"
