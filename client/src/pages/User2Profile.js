@@ -248,12 +248,6 @@ export default function User2Profile() {
             </ListItemIcon>
             <ListItemText>myPastEvents</ListItemText>
           </ListItem>
-          <ListItem button component="a" href="/stats">
-            <ListItemIcon>
-              <DataUsageIcon />
-            </ListItemIcon>
-            <ListItemText>myStats</ListItemText>
-          </ListItem>
         </List>
         <Divider />
         <List>
