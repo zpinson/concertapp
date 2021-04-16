@@ -4,10 +4,12 @@
   border-radius: 4px;
   overflow-y: scroll;
   overflow-x: hidden;
+  justify-content: center;
 }
 
 .list-overflow-container ul {
-  margin: 0;
+  margin: 10;
+  justify-content: center;
 }
 
 .list-overflow-container li {
@@ -21,7 +23,7 @@
 }
 
 .list-overflow-container li a {
-  color: #2A878C;
+  color: #fff;
 }
 
 .list-overflow-container li:first-child {

@@ -4,6 +4,7 @@ import MainNav from "../components/MainNav";
 import Footer from "../components/Footer";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
+import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
 class SearchResults extends Component {
@@ -51,10 +52,11 @@ class SearchResults extends Component {
               eventUrl: eventUrl,
               longitude: longitude,
               latitude: latitude,
-              artistImg: artistImg
+              artistImg: artistImg,
             };
             console.log(eventObj);
             return eventObj;
+            return artistImg;
           });
           console.log(events);
           this.setState({ events: events });
@@ -64,9 +66,9 @@ class SearchResults extends Component {
       API.getPastEvent(this.state.search)
         .then((res) => {
           console.log("res.data: ", res.data);
-          const pastImg = res.data[0].artist.thumb_url
+          const pastImg = res.data[0].artist.thumb_url;
           console.log(pastImg);
-          
+
           const events = res.data.map((event) => {
             console.log(event.lineup[0]);
             const id = event.id;
@@ -91,10 +93,11 @@ class SearchResults extends Component {
               eventUrl: eventUrl,
               longitude: longitude,
               latitude: latitude,
-              artistImg: artistImg
+              artistImg: artistImg,
             };
             console.log(eventObj);
             return eventObj;
+            return artistImg;
           });
           console.log(events);
           this.setState({ events: events });
@@ -117,7 +120,7 @@ class SearchResults extends Component {
         longitude: event.longitude,
         latitude: event.latitude,
         eventId: event.id,
-        artistImg: event.artistImg
+        artistImg: event.artistImg,
       })
         .then(console.log("success!!!!"))
         .catch((err) => console.log(err));
@@ -132,7 +135,7 @@ class SearchResults extends Component {
         longitude: event.longitude,
         latitude: event.latitude,
         eventId: event.id,
-        artistImg: event.artistImg
+        artistImg: event.artistImg,
       })
         .then(console.log("success!!!!"))
         .catch((err) => console.log(err));
@@ -150,44 +153,59 @@ class SearchResults extends Component {
           handleCheckedChange={this.handleCheckedChange}
           search={this.state.search}
         />
-        <div className="container">
+        <div className="container" style={{ justifyContent: "center" }}>
           {this.state.events ? (
             <EventList className="overflow-container">
               {this.state.events.map((event) => (
                 <EventListItem key={event.id}>
-                  {/* <Card style={{ height: "60px", width: "60px" }}> */}
-                  <p>
-                    <strong>
-                      {event.venue}
-                    </strong>
-                  </p>
-
-                  <p>   {event.location}</p>
-                  <p>
-                    {event.date} at {event.time}
-                  </p>
-                  <Button component="a" href={event.eventUrl} target="_blank" className="btn btn-light">
-                      More Info
-                  </Button>
-                  <Button
-                    component="a"
-                    href={
-                      "https://www.google.com/maps/search/?api=1&query=" +
-                      event.latitude +
-                      "," +
-                      event.longitude
-                    }
-                    target="_blank"
-                    className="btn btn-light"
-                  >Directions
-                  </Button>
-                  <Button
-                    onClick={() => this.handleEventSave(event.id)}
-                    className="btn btn-light"
+                  <Grid
+                    container
+                    direction="row"
+                    justify="space-between"
+                    alignItems="center"
                   >
-                    RSVP
-                  </Button>
-                  {/* </Card> */}
+                    <Grid item>
+                      <strong>{event.time}</strong>
+                      <p>{event.date}</p>
+                    </Grid>
+                    <Grid item style={{minWidth: 200, maxWidth: 250}}>
+                    <strong>{event.venue}</strong>
+                    <p>{event.location}</p>
+                    </Grid>
+                    
+                    
+                      <Button
+                        component="a"
+                        href={event.eventUrl}
+                        target="_blank"
+                        className="btn"
+                      >
+                        More Info
+                      </Button>
+
+                      <Button
+                        component="a"
+                        href={
+                          "https://www.google.com/maps/search/?api=1&query=" +
+                          event.latitude +
+                          "," +
+                          event.longitude
+                        }
+                        target="_blank"
+                        className="btn"
+                      >
+                        Directions
+                      </Button>
+
+                      <Button
+                        onClick={() => this.handleEventSave(event.id)}
+                        className="btn"
+                        style={{ color: "white" }}
+                      >
+                        RSVP
+                      </Button>
+                   
+                  </Grid>
                 </EventListItem>
               ))}
             </EventList>
