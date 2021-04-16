@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -29,7 +27,6 @@ import EventBusyIcon from '@material-ui/icons/EventBusy';
 import HomeIcon from "@material-ui/icons/Home";
 import DataUsageIcon from '@material-ui/icons/DataUsage';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import blue from "@material-ui/core/colors/blue";
 import API from "../utils/API";
 
 function Copyright() {

@@ -1,4 +1,4 @@
-import React, { Component, Card, useState } from "react";
+import React, { Component, useState } from "react";
 import { EventList, EventListItem } from "../components/EventList";
 import MainNav from "../components/MainNav";
 import Footer from "../components/Footer";

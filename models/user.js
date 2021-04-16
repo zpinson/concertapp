@@ -12,13 +12,13 @@ const UserSchema = new Schema({
       type: String, 
       required: true, 
     },
-    events: [
+    Events: [
       {
         type: Schema.Types.ObjectId,
         ref: "Events"
       }
     ],
-    pastEvents: [
+    pastevents: [
       {
         type: Schema.Types.ObjectId,
         ref: "PastEvents"
