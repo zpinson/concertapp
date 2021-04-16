@@ -25,7 +25,7 @@ function App() {
             <UserProfile />
           </Route>
           <Route exact path={["/pastevents"]}>
-            <SavedEvents />
+            <PastEvents />
           </Route>
           <Route exact path={["/login"]}>
             <UserLogin />
