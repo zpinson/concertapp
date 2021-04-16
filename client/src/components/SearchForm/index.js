@@ -18,13 +18,13 @@ import { STATES } from "mongoose";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 500,
+    minWidth: 500,
     maxHeight: 200,
   },
   alignItemsAndJustifyContent: {
     display: "flex",
-    alignItems: "left",
-    justifyContent: "left",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "grey",
   },
 });
@@ -45,8 +45,7 @@ function SearchForm(props) {
       <Card className={classes.root}>
         <CardActionArea>
           <CardContent className={classes.alignItemsAndJustifyContent}>
-            <FormControl className={classes.margin}>
-              <InputLabel htmlFor="event">Enter an Artist:</InputLabel>
+            <FormControl>
               <Input
                 value={props.search}
                 onChange={props.handleInputChange}
@@ -64,14 +63,14 @@ function SearchForm(props) {
               />
               <FormControlLabel
             control={<Checkbox checked={props.past} onChange={props.handleCheckedChange} name="past" />}
-            label="past"
+            label="Show Past Events"
           />
             </FormControl>
           </CardContent>
         </CardActionArea>
         <CardActions
           className={classes.alignItemsAndJustifyContent}
-          style={{ backgroundColor: "grey" }}
+          style={{ backgroundColor: "grey",  }}
         >
           <Button
             onClick={props.handleFormSubmit}

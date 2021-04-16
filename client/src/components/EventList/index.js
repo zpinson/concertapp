@@ -8,14 +8,15 @@ import "./style.css";
 
 // This file exports both the List and ListItem components
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   paper: {
     backgroundColor: "#9393ef",
     margin: 5,
-    width: "95%",
+    width: "99%",
   },
   resultList: {
-    alignItems: "center"
+    alignItems: "center",
+    justify: "center"
   }
 }));
 
@@ -31,7 +32,7 @@ export function EventListItem({ children }) {
   const classes = useStyles();
 
   return (
-    <Grid justify="space-evenly">
+    <Grid style={{justify: "center"}}>
       <Grid item className={classes.resultList}>
         <Paper className={classes.paper}>
           <ListItem className="list-group-item">{children}</ListItem>
