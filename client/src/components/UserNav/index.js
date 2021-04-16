@@ -7,6 +7,7 @@ import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
@@ -18,6 +19,7 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import API from "../../utils/API"
 // import { mainListItems, secondaryListItems } from "./listItems";
 // import Stats from "../Stats";
 // import UpcomingEvents from "../UpcomingEvents";
@@ -197,8 +199,8 @@ export default function UserNav() {
                 <UpcomingEvents />
               </Paper>
             </Grid> */}
-            {/* Recent Orders */}
-            {/* <Grid item xs={12}>
+          {/* Recent Orders */}
+          {/* <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Orders />
               </Paper>
