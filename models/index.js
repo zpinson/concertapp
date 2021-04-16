@@ -1,4 +1,5 @@
 module.exports = {
     Event: require("./events"),
-    PastEvent: require("./pastevents")
+    PastEvent: require("./pastevents"),
+    User: require("./user")
 };

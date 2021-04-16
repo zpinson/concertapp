@@ -15,14 +15,17 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route exact path={["/"]}>
-            <Home />
+          <Route exact path="/" component={Home}>
+            {/* <Home /> */}
           </Route>
           <Route exact path={["/searchresult"]}>
             <SearchResults />
           </Route>
           <Route exact path={["/profile"]}>
             <UserProfile />
+          </Route>
+          <Route exact path={["/pastevents"]}>
+            <PastEvents />
           </Route>
           <Route exact path={["/login"]}>
             <UserLogin />
