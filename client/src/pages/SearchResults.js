@@ -1,5 +1,5 @@
 import React, { Component, Card, useState } from "react";
-import { EventList, ListItem } from "../components/EventList";
+import { EventList, EventListItem } from "../components/EventList";
 import MainNav from "../components/MainNav";
 import Footer from "../components/Footer";
 import API from "../utils/API";
@@ -154,7 +154,7 @@ class SearchResults extends Component {
           {this.state.events ? (
             <EventList className="overflow-container">
               {this.state.events.map((event) => (
-                <ListItem key={event.id}>
+                <EventListItem key={event.id}>
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
                   <p>
                     <strong>
@@ -191,7 +191,7 @@ class SearchResults extends Component {
                     Save
                   </Button>
                   {/* </Card> */}
-                </ListItem>
+                </EventListItem>
               ))}
             </EventList>
           ) : (
