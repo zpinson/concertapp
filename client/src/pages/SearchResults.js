@@ -6,6 +6,7 @@ import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import moment from 'moment';
 
 class SearchResults extends Component {
   state = {
@@ -47,8 +48,8 @@ class SearchResults extends Component {
               artist: artist,
               location: location,
               venue: venue,
-              date: date,
-              time: time,
+              date: moment(date).format("dddd, MMMM Do YYYY"),
+              time: moment(time, "HH:mm").format("h:mm a"),
               eventUrl: eventUrl,
               longitude: longitude,
               latitude: latitude,
@@ -88,8 +89,8 @@ class SearchResults extends Component {
               artist: artist,
               location: location,
               venue: venue,
-              date: date,
-              time: time,
+              date: moment(date).format("dddd, MMMM Do YYYY"),
+              time: moment(time, "HH:mm").format("h:mm a"),
               eventUrl: eventUrl,
               longitude: longitude,
               latitude: latitude,
@@ -155,7 +156,7 @@ class SearchResults extends Component {
         />
         <div className="container" style={{ justifyContent: "center" }}>
           {this.state.events ? (
-            <EventList className="overflow-container">
+            <EventList className="overflow-container" >
               {this.state.events.map((event) => (
                 <EventListItem key={event.id}>
                   <Grid
