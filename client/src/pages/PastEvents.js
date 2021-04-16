@@ -236,7 +236,7 @@ export default function PastEvents() {
             </ListItemIcon>
             <ListItemText>Home</ListItemText>
           </ListItem>
-          <ListItem button component="a" href="/usertest">
+          <ListItem button component="a" href="/user">
             <ListItemIcon>
               <EventAvailableIcon />
             </ListItemIcon>
