@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -10,6 +11,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
@@ -21,27 +24,13 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import EventAvailableIcon from "@material-ui/icons/EventAvailable";
+import EventBusyIcon from '@material-ui/icons/EventBusy';
+import HomeIcon from "@material-ui/icons/Home";
+import DataUsageIcon from '@material-ui/icons/DataUsage';
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import blue from "@material-ui/core/colors/blue";
 import API from "../utils/API";
-// import { mainListItems, secondaryListItems } from "./listItems";
-// import Stats from "../Stats";
-// import UpcomingEvents from "../UpcomingEvents";
-// import Orders from "./Orders";
-
-function getSavedEvents() {
-  API.getSavedEvents()
-    .then((res) => {
-      this.setState({
-        events: res.data,
-      });
-      console.log(this.state.events);
-    })
-    .catch((err) => console.log(err));
-}
-
-function handleEventDelete(id) {
-  console.log(id);
-  API.deleteEvent(id).then((res) => this.getSavedEvents());
-}
 
 function Copyright() {
   return (
@@ -56,31 +45,12 @@ function Copyright() {
   );
 }
 
-// handleGetSavedEvents = () => {
-//     getSavedEvents()
-//     .than(tell it what to return)
-// }
-// componentDidMount() {
-//     this.getSavedEvents();
-//   };
-handleGetSavedEvents = () => {
-  state = {
-    events: [],
-  };
-
-  componentDidMount = () => {
-    this.getSavedEvents();
-  };
-
-  getSavedEvents().then(this.state.events);
-  console.log("handleGetSavedEvents: ", events);
-};
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    backgroundColor: "#6d6d78",
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -119,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     position: "relative",
     whiteSpace: "nowrap",
+    backgroundColor: "#9393ef",
     width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
@@ -155,18 +126,52 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  card: {
+    display: "inline-block",
+    margin: 5,
+    alignItems: "center",
+    justify: "space-between",
+  },
+  artistCard: {
+    minWidth: "100",
+    minHeight: "100",
+    margin: 5,
+  },
+  eventText: {
+    display: "flex",
+    padding: 5,
+    align: "center",
+    justify: "center",
+  },
+  resPaper: {
+    margin: 5,
+    marginTop: 20,
+    padding: 20,
+    backgroundColor: "#9393ef"
+  },
 }));
 
 export default function User2Profile() {
-  //   state = {
-  //     events: [],
-  //   };
-
-  //   componentDidMount();
-  handleGetSavedEvents();
-
   const classes = useStyles();
+  const [events, setEvents] = React.useState([]);
   const [open, setOpen] = React.useState(true);
+
+  function getSavedEvents() {
+    API.getSavedEvents()
+      .then((res) => {
+        setEvents(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleEventDelete(id) {
+    console.log(id);
+    API.deleteEvent(id).then((res) => getSavedEvents());
+  }
+
+  useEffect(() => {
+    getSavedEvents();
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -224,103 +229,156 @@ export default function User2Profile() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        {/* <Divider />
-        <List>{mainListItems}</List>
         <Divider />
-        <List>{secondaryListItems}</List> */}
+        <List>
+          <ListItem button component="a" href="/">
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText>Home</ListItemText>
+          </ListItem>
+          <ListItem button component="a" href="/usertest">
+            <ListItemIcon>
+              <EventAvailableIcon />
+            </ListItemIcon>
+            <ListItemText>myUpcomingEvents</ListItemText>
+          </ListItem>
+          <ListItem button component="a" href="/pastevents">
+            <ListItemIcon>
+              <EventBusyIcon />
+            </ListItemIcon>
+            <ListItemText>myPastEvents</ListItemText>
+          </ListItem>
+          <ListItem button component="a" href="/stats">
+            <ListItemIcon>
+              <DataUsageIcon />
+            </ListItemIcon>
+            <ListItemText>myStats</ListItemText>
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button component="a" href="/" >
+            <ListItemIcon>
+              <ExitToAppIcon color="inherit" />
+            </ListItemIcon>
+            <ListItemText>Log Out</ListItemText>
+          </ListItem>
+        </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          {this.state.events ? (
-            <List className="overflow-container">
-              {this.state.events.map((event) => (
-                <ListItem>
-                  <Card>
-                    <Grid container spacing={3}>
-                      <Grid item xs={3}>
-                        <Paper className={classes.paper}>
-                          <strong>{event.artist_name}</strong>
-                        </Paper>
-                      </Grid>
-                      <Grid item xs={5}>
-                        <Paper className={classes.paper}>
-                          <strong>{event.venue_name}</strong>
-                          <p>{event.location}</p>
-                        </Paper>
-                      </Grid>
-                      <Grid item xs={4}>
-                        <Paper className={classes.paper}>
-                          <strong>{event.time}</strong>
-                          <p>{event.date}</p>
-                        </Paper>
-                      </Grid>
-                      <p>
-                        <Grid item xs={2}>
-                          <Paper className={classes.paper}>
-                            <Button>
-                              <a href={event.event_url} target="_blank">
-                                More Info
-                              </a>
-                            </Button>
-                          </Paper>
+          {events ? (
+            <div>
+              {events.map((event) => (
+                <Grid
+                  className="overflow-container"
+                  container
+                  direction="row"
+                  spacing={3}
+                  key={event.id}
+                >
+                  <Grid item xs={12}>
+                    <Paper className={classes.resPaper} elevation={5}>
+                      <Grid
+                        container
+                        justify="space-between"
+                        alignItems="center"
+                        spacing={3}
+                      >
+                        <Grid item>
+                          <Card className={classes.card} variant="outlined" style={{margin: 5}}>
+                            <CardContent className={classes.artistCard}>
+                              <Typography variant="h6" component="h2">
+                                /image/
+                              </Typography>
+                            </CardContent>
+                          </Card>
+                          <Typography
+                            className={classes.eventText}
+                            component="h2"
+                          >
+                            <strong>{event.artist_name}</strong>
+                          </Typography>
                         </Grid>
-                        <Grid item xs={2}>
-                          <Paper className={classes.paper}>
-                            <Button>
-                              <a
-                                href={
-                                  "https://www.google.com/maps/search/?api=1&query=" +
-                                  event.latitude +
-                                  "," +
-                                  event.longitude
-                                }
-                                target="_blank"
-                              >
-                                Direction
-                              </a>
-                            </Button>
-                          </Paper>
+                        <Grid wrap="nowrap" item className={classes.artistCard}>
+                          <Typography
+                            className={classes.eventText}
+                            component="h2" variant="h5"
+                          >
+                            <strong>{event.venue_name}</strong>
+                          </Typography>
+                          <Typography
+                            className={classes.eventText}
+                            component="h2"
+                          >
+                            {event.location}
+                          </Typography>
                         </Grid>
-                        <Grid item xs={2}>
-                          <Paper className={classes.paper}>
-                            <Button
-                              onClick={() => this.handleEventDelete(event._id)}
-                            >
-                              Remove Event
-                            </Button>
-                          </Paper>
+                        <Grid item className={classes.artistCard}>
+                          <Typography
+                            className={classes.eventText}
+                            component="h2"
+                          >
+                            <strong>{event.time}</strong>
+                          </Typography>
+                          <Typography
+                            className={classes.eventText}
+                            component="h2"
+                          >
+                            {event.date}
+                          </Typography>
                         </Grid>
-                      </p>
-                    </Grid>
-                  </Card>
-                </ListItem>
+                      </Grid>
+                      <p></p>
+                      <Grid container justify="center" spacing={4}>
+                        <Grid item>
+                          <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                            href={event.event_url}
+                            target="_blank"
+                          >
+                            More Info
+                          </Button>
+                        </Grid>
+                        <Grid item>
+                          <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                            href={
+                              "https://www.google.com/maps/search/?api=1&query=" +
+                              event.latitude +
+                              "," +
+                              event.longitude
+                            }
+                            target="_blank"
+                          >
+                            Get Directions
+                          </Button>
+                        </Grid>
+                        <Grid item>
+                          <Button
+                            onClick={() => handleEventDelete(event._id)}
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                          >
+                            Remove Event
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </Paper>
+                  </Grid>
+                </Grid>
               ))}
-            </List>
+            </div>
           ) : (
             <h3>No Results to Display</h3>
           )}
-
-          {/* <Grid container spacing={3}>
-            Chart
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Stats />
-              </Paper>
-            </Grid>
-            Upcoming Events
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <UpcomingEvents />
-              </Paper>
-            </Grid> */}
-          {/* Recent Orders */}
-          {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid> */}
-          {/* </Grid> */}
           <Box pt={4}>
             <Copyright />
           </Box>

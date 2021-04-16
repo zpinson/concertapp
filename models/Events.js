@@ -10,7 +10,8 @@ const eventSchema = new Schema({
   event_url: { type: String, required: true },
   longitude: { type: String, required: true },
   latitude: { type: String, required: true },
-  eventId: { type: String, required: true, unique: true }
+  eventId: { type: String, required: true, unique: true },
+  artistImg: { type: String, required: false, unique: false }
 });
 
 const Event = mongoose.model("event", eventSchema);

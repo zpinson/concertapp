@@ -5,13 +5,7 @@ const passport = require("passport");
 const MongoStore = require("connect-mongo");
 const session = require("express-session");
 const routes = require("./routes");
-// const cors = require("cors");
-// const passportLocal = require("passport-local").Strategy;
-// const cookieParser = require("cookie-parser");
-// const bcrypt = require("bcryptjs");
 
-// const bodyParser = require("body-parser");
-// const User = require("./user");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -38,23 +32,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000", // <-- location of the react app were connecting to
-//     credentials: true,
-//   })
-// );
-// app.use(
-//   session({
-//     secret: "secretcode",
-//     resave: true,
-//     saveUninitialized: true,
-//   })
-// );
-// app.use(cookieParser("secretcode"));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// require("./passportConfig")(passport);
+
 
 app.use(routes);
 

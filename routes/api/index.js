@@ -36,7 +36,7 @@ router.get("/login", (req, res) => {
     // res.redirect("/login");
   }
   else {
-    return res.json(req.user.name);
+    return res.json(req.user.email);
   }
 });
 

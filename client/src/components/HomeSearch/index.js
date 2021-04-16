@@ -6,20 +6,16 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import MusicNoteIcon from "@material-ui/icons/MusicNote";
-import FormControl from "@material-ui/core/FormControl";
 // import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import image from "../images/MSG_SEA.jpg";
-import SearchForm from "../SearchForm";
-import API from "../../utils/API";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 750,
+    minWidth: 750,
+    maxWidth: 900,
+    minHeight: 450,
   },
   alignItemsAndJustifyContent: {
     display: "flex",
@@ -27,43 +23,13 @@ const useStyles = makeStyles({
     justifyContent: "center",
     backgroundColor: "grey",
   },
+  infotext: {
+    fontStyle: "italic"
+  }
 });
 
 export default function HomeSearch() {
   const classes = useStyles();
-  const [events, setEvent] = useState('');
-
-  // const handleFormSubmit = (e) => {
-  //   e.preventDefault();
-  //   API.getEvent(this.state.artist)
-  //     .then((res) => {
-  //       console.log("res.data: ", res.data);
-  //       const events = res.data.map((event) => {
-  //         console.log(event.lineup[0]);
-  //         const id = event.id;
-  //         const artist = event.lineup[0];
-  //         const location = event.venue.location;
-  //         const venue = event.venue.name;
-  //         const date = event.datetime;
-  //         const eventUrl = event.url;
-
-  //         const eventObj = {
-  //           id: id,
-  //           artist: artist,
-  //           location: location,
-  //           venue: venue,
-  //           date: date,
-  //           eventUrl: eventUrl,
-  //         };
-  //         console.log(eventObj);
-  //         return eventObj;
-  //       });
-  //       console.log(events);
-  //       this.setState({ events: events });
-  //     })
-  //     .catch((err) => console.log("API.getEvent err: ", err));
-  //     return events;
-  // };
 
   return (
     <Grid
@@ -84,24 +50,19 @@ export default function HomeSearch() {
             title="Sea of MSG"
           />
           <CardContent className={classes.alignItemsAndJustifyContent}>
-            <FormControl className={classes.margin}>
-              <InputLabel
-                htmlFor="input-with-icon-adornment"
-                style={{ color: "white" }}
-              >
-                Search for an Artist:
-              </InputLabel>
-              <Input
-                onChange={(e) => setEvent(e.target.value)}
-                id="input-with-icon-adornment"
-                style={{ width: "250" }}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <MusicNoteIcon style={{ color: "white" }} />
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
+            <Typography className={classes.infotext}>
+              <strong><p>
+                myConcerts is a program designed with the music lover in mind
+                and heart. Using API calls and database storage, we provide the
+                user with the ability to search for upcoming events using the
+                artist's name.
+                <p></p>
+                Sign-up with an account today to be able to store your favorite
+                artists for easy future reference as well as RSVP to events you
+                wish to attend. The saved information will appear on your user
+                profile when you sign in again!
+              </p></strong>
+            </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions
@@ -115,11 +76,10 @@ export default function HomeSearch() {
             variant="contained"
             color="primary"
           >
-            Show my Concerts!
+            Let's find "myConcerts" !
           </Button>
         </CardActions>
       </Card>
-      <SearchForm />
     </Grid>
   );
 }

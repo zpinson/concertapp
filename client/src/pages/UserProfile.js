@@ -51,7 +51,7 @@ class Saved extends Component {
                     {event.date} at {event.time}
                   </p>
                   <button className="btn btn-light">
-                    <a href={event.event_url}>More Info</a>
+                    <a href={event.event_url} target="_blank">More Info</a>
                   </button>
                   <button className="btn btn-light">
                     <a
@@ -59,11 +59,9 @@ class Saved extends Component {
                         ("https://www.google.com/maps/search/?api=1&query=" +
                           event.latitude +
                           "," +
-                          event.longitude)
-                        }
-                        target="_blank"
-                      >
-                        Direction
+                          event.longitude
+                        )} target="_blank">
+                        Get Directions
                       </a>
                     </button>
                     <button
@@ -80,7 +78,6 @@ class Saved extends Component {
               <h3>No Results to Display</h3>
             )}
           </div>
-        
       </div>
     );
   }
