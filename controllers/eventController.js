@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the bookController
+// Defining methods for the eventController
 module.exports = {
   findAll: function (req, res) {
     db.Event.find(req.query)
