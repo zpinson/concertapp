@@ -158,37 +158,34 @@ class SearchResults extends Component {
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
                   <p>
                     <strong>
-                      {event.artist} at {event.venue}
+                      {event.venue}
                     </strong>
                   </p>
 
-                  <p>{event.location}</p>
+                  <p>   {event.location}</p>
                   <p>
                     {event.date} at {event.time}
                   </p>
-                  <Button className="btn btn-light">
-                    <a href={event.eventUrl} target="_blank">
+                  <Button component="a" href={event.eventUrl} target="_blank" className="btn btn-light">
                       More Info
-                    </a>
                   </Button>
-                  <Button className="btn btn-light">
-                    <a
-                      href={
-                        "https://www.google.com/maps/search/?api=1&query=" +
-                        event.latitude +
-                        "," +
-                        event.longitude
-                      }
-                      target="_blank"
-                    >
-                      Direction
-                    </a>
+                  <Button
+                    component="a"
+                    href={
+                      "https://www.google.com/maps/search/?api=1&query=" +
+                      event.latitude +
+                      "," +
+                      event.longitude
+                    }
+                    target="_blank"
+                    className="btn btn-light"
+                  >Directions
                   </Button>
                   <Button
                     onClick={() => this.handleEventSave(event.id)}
                     className="btn btn-light"
                   >
-                    Save
+                    RSVP
                   </Button>
                   {/* </Card> */}
                 </EventListItem>
