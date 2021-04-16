@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { EventList, ListItem } from "../components/EventList";
+import { EventList, EventListItem } from "../components/EventList";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 import Card from "@material-ui/core/Card";
@@ -39,7 +39,7 @@ class Saved extends Component {
           {this.state.events ? (
             <EventList className="overflow-container">
               {this.state.events.map((event) => (
-                <ListItem key={event.id}>
+                <EventListItem key={event.id}>
                   {/* <Card style={{ height: "60px", width: "60px" }}> */}
                   <p>
                     <strong>
@@ -71,7 +71,7 @@ class Saved extends Component {
                       Delete
                     </button>
                     {/* </Card> */}
-                  </ListItem>
+                  </EventListItem>
                 ))}
               </EventList>
             ) : (

@@ -127,8 +127,8 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
   card: {
-    display: "inline-block",
-    margin: 5,
+    display: "flex",
+    padding: 0,
     alignItems: "center",
     justify: "space-between",
   },
@@ -136,6 +136,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "100",
     minHeight: "100",
     margin: 5,
+    maxHeight: 200,
+    maxWidth: 500,
   },
   eventText: {
     display: "flex",
@@ -147,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 5,
     marginTop: 20,
     padding: 20,
-    backgroundColor: "#9393ef"
+    backgroundColor: "#9393ef",
   },
 }));
 
@@ -258,7 +260,7 @@ export default function User2Profile() {
         </List>
         <Divider />
         <List>
-          <ListItem button component="a" href="/" >
+          <ListItem button component="a" href="/">
             <ListItemIcon>
               <ExitToAppIcon color="inherit" />
             </ListItemIcon>
@@ -288,13 +290,16 @@ export default function User2Profile() {
                         spacing={3}
                       >
                         <Grid item>
-                          <Card className={classes.card} variant="outlined" style={{margin: 5}}>
-                            <CardContent className={classes.artistCard}>
+                          {/* <Card className={classes.card} variant="outlined" style={{margin: 5}}>
+                            <CardContent className={classes.artistCard}> */}
                               <Typography variant="h6" component="h2">
-                                /image/
-                              </Typography>
-                            </CardContent>
-                          </Card>
+                          <img
+                            src={event.artistImg}
+                            className={classes.artistCard}
+                          ></img>
+                          </Typography>
+                            {/* </CardContent>
+                          </Card> */}
                           <Typography
                             className={classes.eventText}
                             component="h2"
@@ -305,7 +310,8 @@ export default function User2Profile() {
                         <Grid wrap="nowrap" item className={classes.artistCard}>
                           <Typography
                             className={classes.eventText}
-                            component="h2" variant="h5"
+                            component="h2"
+                            variant="h5"
                           >
                             <strong>{event.venue_name}</strong>
                           </Typography>
