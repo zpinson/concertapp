@@ -1,4 +1,4 @@
-import React, { Component, Card, useState } from "react";
+import React, { Component, useState } from "react";
 import { EventList, EventListItem } from "../components/EventList";
 import MainNav from "../components/MainNav";
 import Footer from "../components/Footer";
@@ -74,7 +74,7 @@ class SearchResults extends Component {
             console.log(event.lineup[0]);
             const id = event.id;
             const artist = event.lineup[0];
-            const location = event.venue.city + ", " + event.venue.region;
+            const location = event.venue.city + ", " + event.venue.region + " " + event.venue.country;
             const venue = event.venue.name;
             const date = event.datetime.slice(0, 10);
             const time = event.datetime.slice(11, 16);
@@ -173,8 +173,7 @@ class SearchResults extends Component {
                     <strong>{event.venue}</strong>
                     <p>{event.location}</p>
                     </Grid>
-                    
-                    
+
                       <Button
                         component="a"
                         href={event.eventUrl}
