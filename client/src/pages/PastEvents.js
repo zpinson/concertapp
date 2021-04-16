@@ -352,22 +352,6 @@ export default function PastEvents() {
                         </Grid>
                         <Grid item>
                           <Button
-                            size="small"
-                            variant="contained"
-                            color="primary"
-                            href={
-                              "https://www.google.com/maps/search/?api=1&query=" +
-                              event.latitude +
-                              "," +
-                              event.longitude
-                            }
-                            target="_blank"
-                          >
-                            Get Directions
-                          </Button>
-                        </Grid>
-                        <Grid item>
-                          <Button
                             onClick={() => handlePastEventDelete(event._id)}
                             size="small"
                             variant="contained"
