@@ -18,12 +18,14 @@ const ArtistsTotal = () => {
           res.getArtistTotal().then((res) => {
             setShowsNum(res.data);
             console.log(res.data);
+            return showsNum;
           });
       })
       .catch((err) => console.log(err));
   }
 
   console.log(events);
+  console.log(showsNum);
 
   function getArtistTotal() {
       API.getArtistTotal()
