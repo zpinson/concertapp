@@ -12,6 +12,18 @@ const UserSchema = new Schema({
       type: String, 
       required: true, 
     },
+    Events: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Events"
+      }
+    ],
+    pastevents: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "PastEvents"
+      }
+    ]
 });
 
 UserSchema.methods = {

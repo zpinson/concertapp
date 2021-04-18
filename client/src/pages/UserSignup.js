@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-// import image from "../images/MSG_SEA.jpg";
+import image from "../components/images/MSG_SEA.jpg";
 
 function Copyright() {
   return (
@@ -35,16 +35,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
   },
-  // image: {
-  //   backgroundImage: `url(${image})`,
-  //   backgroundRepeat: "no-repeat",
-  //   backgroundColor:
-  //     theme.palette.type === "light"
-  //       ? theme.palette.grey[50]
-  //       : theme.palette.grey[900],
-  //   backgroundSize: "cover",
-  //   backgroundPosition: "center",
-  // },
+  image: {
+    backgroundImage: `url(${image})`,
+    backgroundRepeat: "no-repeat",
+    backgroundColor:
+      theme.palette.type === "light"
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
   paper: {
     margin: theme.spacing(8, 4),
     display: "flex",
