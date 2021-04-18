@@ -1,39 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import API from "../../utils/API";
 
 const StatesTotal = () => {
-  const [chartData, setChartData] = useState({});
+  const [chartStateData, setChartStateData] = useState({});
   const [total, setTotal] = useState([]);
-  const [showsNum, setShowsNum] = useState([]);
-  const [stateName, setStateName] = useState([]);
+  const [statesShows, setStatesShows] = useState([]);
+  const [statesName, setStatesName] = useState([]);
 
   console.log(total);
-  console.log(stateName);
+  console.log(statesName);
 
-  const chart = () => {
-    let state = [];
+  const chartState = () => {
+    let states = [];
     let shows = [];
 
-    API.getArtistTotal()
+    API.getStatesTotal()
       .then((res) => {
-        setShowsNum(res.data);
+        setStatesShows(res.data);
         console.log(res.data);
         for (const dataObj of res.data) {
-          state.push(dataObj._id);
+          states.push(dataObj._id);
           shows.push(dataObj.count);
 
-          console.log(state, shows);
+          console.log(states, shows);
         }
-        setStateName(state);
-        setTotal(shows);
+        setStatesName(states);
+        setStatesShows(shows);
 
-        setChartData({
-          labels: stateName,
+        setChartStateData({
+          labels: statesName,
           datasets: [
             {
               label: "level of thiccness",
-              data: total,
+              data: statesShows,
               backgroundColor: ["rgba(75, 192, 192, 0.6)"],
               borderWidth: 4,
             },
@@ -46,18 +46,18 @@ const StatesTotal = () => {
   };
 
   useEffect(() => {
-    chart();
+    chartState();
   }, []);
 
   return (
     <div>
-      <Bar
+      <Pie
         data={{
-          labels: stateName,
+          labels: statesName,
           datasets: [
             {
               label: "myConcerts by State",
-              data: total,
+              data: statesShows,
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
                 "rgba(54, 162, 235, 0.2)",

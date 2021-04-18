@@ -160,7 +160,7 @@ class SearchResults extends Component {
         <div className="container" style={{ justifyContent: "center" }}>
           {this.state.events ? (
             <EventList className="overflow-container" >
-              {this.state.events.map((event) => (
+              {this.state.events.reverse().map((event) => (
                 <EventListItem key={event.id}>
                   <Grid
                     container

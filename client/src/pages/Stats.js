@@ -32,14 +32,6 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import API from "../utils/API";
 import ArtistsTotal from "../components/ArtistsTotal";
 import StatesTotal from "../components/StatesTotal";
-// import {
-//   Chart,
-//   BarSeries,
-//   Title,
-//   ArgumentAxis,
-//   ValueAxis,
-// } from "@devexpress/dx-react-chart-material-ui";
-// import { Animation } from "@devexpress/dx-react-chart";
 
 function Copyright() {
   return (
