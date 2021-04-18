@@ -30,11 +30,4 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  getArtistTotal: function (req, res) {
-      db.PastEvent.aggregate([
-          { $group: { _id: "$artist_name", count: { $sum: 1 } } },
-        ])
-      .then(console.log(req.body))
-      .catch((err) => res.status(422).json(err));
-  },
 };

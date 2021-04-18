@@ -1,8 +1,7 @@
 const path = require("path");
 const router = require("express").Router();
 const eventRoutes = require("./events");
-const artistStatRoutes = require("./artists");
-const stateStatRoutes = require("./states");
+const statRoutes = require("./stats");
 const pastEventRoutes = require("./pastevents");
 const userRoutes = require("./user");
 const signupRoutes = require("./signup");
@@ -11,8 +10,7 @@ const passport = require("../../passport");
 // For anything else, render the html page
 router.use("/events", eventRoutes);
 router.use("/pastevents", pastEventRoutes);
-router.use("/artists", artistStatRoutes);
-router.use("/states", stateStatRoutes);
+router.use("/stats", statRoutes);
 
 // Endpoint: /api/user
 router.use("/user", userRoutes);
