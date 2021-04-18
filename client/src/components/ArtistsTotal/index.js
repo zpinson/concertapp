@@ -4,10 +4,10 @@ import axios from "axios";
 import API from "../../utils/API";
 
 const ArtistsTotal = () => {
-  const [chartData, setChartData] = useState({});
+  const [chartData, setChartData] = React.useState({});
   const [events, setEvents] = React.useState([]);
-  const [showsNum, setShowsNum] = useState([]);
-  const [artistName, setArtistName] = useState([]);
+  const [showsNum, setShowsNum] = React.useState([]);
+  const [artistName, setArtistName] = React.useState([]);
 
   function getPastSavedEvents() {
     API.getPastSavedEvents()
@@ -15,7 +15,7 @@ const ArtistsTotal = () => {
         setEvents(res.data);
       })
       .then((res) => {
-          res.getArtistTotal().then((res) => {
+          res.getArtistTotal(res).then((res) => {
             setShowsNum(res.data);
             console.log(res.data);
             return showsNum;
@@ -23,9 +23,6 @@ const ArtistsTotal = () => {
       })
       .catch((err) => console.log(err));
   }
-
-  console.log(events);
-  console.log(showsNum);
 
   function getArtistTotal() {
       API.getArtistTotal()
@@ -52,6 +49,8 @@ const ArtistsTotal = () => {
 
           shows.push(parseInt(dataObj.event_id));
           artist.push(dataObj.artist_name);
+
+          console.log(dataObj);
         }
         setChartData({
           labels: artist,
