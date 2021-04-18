@@ -40,5 +40,9 @@ export default {
   signup: function (signupData) {
     console.log(signupData)
     return axios.post("/api/signup", signupData);
+  },
+  login: function (loginData) {
+    console.log(loginData)
+    return axios.post("/api/login", loginData);
   }
 };

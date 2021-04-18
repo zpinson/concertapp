@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import API from "../utils/API";
 import Axios from "axios";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -67,17 +68,14 @@ export default function UserLogin() {
   const classes = useStyles();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [data, setData] = useState(null);
-  const login = () => {
-    Axios({
-      method: "POST",
-      data: {
-        username: loginEmail,
-        password: loginPassword,
-      },
-      withCredentials: true,
-      url: "http://localhost:3001/api/login",
-    }).then((res) => console.log(res));
+  
+  const handleLogin = () => {
+    API.login({
+      email: loginEmail,
+      password: loginPassword,
+    })
+      .then(console.log("success!!!!"))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -123,8 +121,8 @@ export default function UserLogin() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              href="/userprofile"
-              onClick={login}
+              href="/user"
+              onClick={() => handleLogin()}
             >
               Log In
             </Button>

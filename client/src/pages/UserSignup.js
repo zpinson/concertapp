@@ -70,10 +70,7 @@ export default function UserLogin() {
   const [registerPassword, setRegisterPassword] = useState("");
   
 
-  handleSignup = (e) => {
-    e.preventDefault()
-    
-
+  const handleSignup = () => {
     API.signup({
       email: registerEmail,
       password: registerPassword,
@@ -137,8 +134,8 @@ export default function UserLogin() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              // href="/userprofile"
-              onClick={(e) => this.handleSignup()}
+              href="/login"
+              onClick={() => handleSignup()}
             >
               Sign Up
             </Button>
