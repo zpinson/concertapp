@@ -12,9 +12,7 @@ module.exports = {
   },
   getStateTotal: function (req, res) {
     console.log("req: ", db.PastEvent);
-    db.PastEvent.aggregate([
-      { $group: { _id: "$state", count: { $sum: 1 } } },
-    ])
+    db.PastEvent.aggregate([{ $group: { _id: "$state", count: { $sum: 1 } } }])
       .then((dbResults) => res.json(dbResults))
       .then(console.log("New Data ", req.body))
       .catch((err) => res.status(422).json(err));

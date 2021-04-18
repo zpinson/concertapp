@@ -32,7 +32,7 @@ const StatesTotal = () => {
           labels: statesName,
           datasets: [
             {
-              label: "level of thiccness",
+              label: "myConcerts by State/Region",
               data: statesShows,
               backgroundColor: ["rgba(75, 192, 192, 0.6)"],
               borderWidth: 4,
@@ -56,7 +56,7 @@ const StatesTotal = () => {
           labels: statesName,
           datasets: [
             {
-              label: "myConcerts by State",
+              label: "# of votes",
               data: statesShows,
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
@@ -76,6 +76,12 @@ const StatesTotal = () => {
               ],
               borderWidth: 1,
             },
+            // {
+            //   label: 'Quantity',
+            //   data: [47, 52, 67, 58, 9, 50],
+            //   backgroundColor: 'orange',
+            //   borderColor: 'red',
+            // },
           ],
         }}
         height={400}
