@@ -8,6 +8,7 @@
     "@material-ui/icons": "^4.11.2",
     "and": "0.0.3",
     "axios": "^0.18.0",
+    "chart.js": "^2.9.4",
     "react": "^16.13.1",
     "react-bootstrap": "^1.5.2",
     "react-chartjs-2": "^2.11.1",
