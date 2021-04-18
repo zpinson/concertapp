@@ -3,7 +3,7 @@ import { EventList, EventListItem } from "../components/EventList";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 import Card from "@material-ui/core/Card";
-import UserNav from "../components/UserNav";
+// import UserNav from "../components/UserNav";
 
 class Saved extends Component {
   state = {
@@ -33,7 +33,7 @@ class Saved extends Component {
   render() {
     return (
       <div>
-        <UserNav />
+        
 
         <div className="container">
           {this.state.events ? (
