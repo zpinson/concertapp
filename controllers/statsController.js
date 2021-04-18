@@ -3,19 +3,19 @@ const db = require("../models");
 module.exports = {
   getArtistTotal: function (req, res) {
     console.log("req: ", db.PastEvent);
-    // db.PastEvent.find(req.params)
-    //   .then(
-        db.PastEvent.aggregate([
-          { $group: { _id: "$artist_name", count: { $sum: 1 } } },
-        ])
-      // )
+    db.PastEvent.aggregate([
+      { $group: { _id: "$artist_name", count: { $sum: 1 } } },
+    ])
       .then((dbResults) => res.json(dbResults))
-      // .then((res) =>
-      //   res.json({
-      //     _id: "_id",
-      //     count: res.count,
-      //   })
-      // )
+      .then(console.log("New Data ", req.body))
+      .catch((err) => res.status(422).json(err));
+  },
+  getStateTotal: function (req, res) {
+    console.log("req: ", db.PastEvent);
+    db.PastEvent.aggregate([
+      { $group: { _id: "$state", count: { $sum: 1 } } },
+    ])
+      .then((dbResults) => res.json(dbResults))
       .then(console.log("New Data ", req.body))
       .catch((err) => res.status(422).json(err));
   },

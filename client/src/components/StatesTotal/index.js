@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import API from "../../utils/API";
 
-const ArtistsTotal = () => {
+const StatesTotal = () => {
   const [chartData, setChartData] = useState({});
   const [total, setTotal] = useState([]);
   const [showsNum, setShowsNum] = useState([]);
-  const [artistName, setArtistName] = useState([]);
+  const [stateName, setStateName] = useState([]);
 
   console.log(total);
-  console.log(artistName);
+  console.log(stateName);
 
   const chart = () => {
-    let artist = [];
+    let state = [];
     let shows = [];
 
     API.getArtistTotal()
@@ -20,16 +20,16 @@ const ArtistsTotal = () => {
         setShowsNum(res.data);
         console.log(res.data);
         for (const dataObj of res.data) {
-          artist.push(dataObj._id);
+          state.push(dataObj._id);
           shows.push(dataObj.count);
 
-          console.log(artist, shows);
+          console.log(state, shows);
         }
-        setArtistName(artist);
+        setStateName(state);
         setTotal(shows);
 
         setChartData({
-          labels: artistName,
+          labels: stateName,
           datasets: [
             {
               label: "level of thiccness",
@@ -53,10 +53,10 @@ const ArtistsTotal = () => {
     <div>
       <Bar
         data={{
-          labels: artistName,
+          labels: stateName,
           datasets: [
             {
-              label: "myConcerts by Artist",
+              label: "myConcerts by State",
               data: total,
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
@@ -102,4 +102,4 @@ const ArtistsTotal = () => {
   );
 };
 
-export default ArtistsTotal;
+export default StatesTotal;

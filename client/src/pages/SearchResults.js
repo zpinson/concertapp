@@ -75,6 +75,7 @@ class SearchResults extends Component {
             const id = event.id;
             const artist = event.lineup[0];
             const location = event.venue.city + ", " + event.venue.region + " " + event.venue.country;
+            const state = event.venue.region;
             const venue = event.venue.name;
             const date = event.datetime.slice(0, 10);
             const time = event.datetime.slice(11, 16);
@@ -88,6 +89,7 @@ class SearchResults extends Component {
               id: id,
               artist: artist,
               location: location,
+              state: state,
               venue: venue,
               date: moment(date).format("dddd, MMMM Do YYYY"),
               time: moment(time, "HH:mm").format("h:mm a"),
@@ -129,6 +131,7 @@ class SearchResults extends Component {
       API.savePastEvent({
         artist_name: event.artist,
         location: event.location,
+        state: event.state,
         venue_name: event.venue,
         date: event.date,
         time: event.time,
