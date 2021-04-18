@@ -7,6 +7,7 @@ import UserSignup from "./pages/UserSignup";
 import User2Profile from "./pages/User2Profile";
 import PastEvents from "./pages/PastEvents";
 import './App.css';
+import Stats from "./pages/Stats";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route exact path={["/pastevents"]}>
             <PastEvents />
+          </Route>
+          <Route exact path={["/stats"]}>
+            <Stats />
           </Route>
           {/* <Route exact path="/events/:id">
                     </Route> */}
