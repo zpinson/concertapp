@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { BarElement } from "react-chartjs-2";
+// import { BarElement } from "react-chartjs-2";
 import axios from "axios";
 import API from "../../utils/API";
+
 
 const ArtistsTotal = () => {
   const [chartData, setChartData] = useState({});
@@ -80,7 +81,8 @@ const ArtistsTotal = () => {
     <div className="App">
       <h1>Chart</h1>
       <div>
-        <BarElement
+      check
+        {/* <BarElement
           data={chartData}
           options={{
             responsive: true,
@@ -90,7 +92,7 @@ const ArtistsTotal = () => {
             },
             indexAxis: "y",
           }}
-        />
+        /> */}
       </div>
     </div>
   );
