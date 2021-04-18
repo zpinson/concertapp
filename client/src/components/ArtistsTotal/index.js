@@ -32,10 +32,9 @@ const ArtistsTotal = () => {
           labels: artistName,
           datasets: [
             {
-              label: "level of thiccness",
               data: total,
               backgroundColor: ["rgba(75, 192, 192, 0.6)"],
-              borderWidth: 4,
+              borderWidth: 23,
             },
           ],
         });
@@ -56,7 +55,7 @@ const ArtistsTotal = () => {
           labels: artistName,
           datasets: [
             {
-              label: "myConcerts by Artist",
+              label: "myArtists",
               data: total,
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
@@ -81,6 +80,11 @@ const ArtistsTotal = () => {
         height={400}
         width={600}
         options={{
+          title: {
+            display: true,
+            text: "myConcerts by Artist",
+            fontSize: 32,
+          },
           maintainAspectRatio: false,
           scales: {
             yAxes: [

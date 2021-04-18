@@ -120,6 +120,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
+    minHeight: 450,
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
@@ -158,7 +159,6 @@ export default function PastEvents() {
   const classes = useStyles();
   const [events, setEvents] = React.useState([]);
   const [open, setOpen] = React.useState(true);
-  // const [uniqArtists, setUniqArtists] = React.useState([]);
 
   function getPastSavedEvents() {
     API.getPastSavedEvents()
@@ -248,6 +248,12 @@ export default function PastEvents() {
             </ListItemIcon>
             <ListItemText>myPastEvents</ListItemText>
           </ListItem>
+          <ListItem button component="a" href="/stats">
+            <ListItemIcon>
+              <DataUsageIcon />
+            </ListItemIcon>
+            <ListItemText>myStats</ListItemText>
+          </ListItem>
         </List>
         <Divider />
         <List>
@@ -263,6 +269,11 @@ export default function PastEvents() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container justify="center">
+            <Paper className={classes.resPaper}>
+              <Typography variant="h4" style={{alignItems: "center"}}>
+                <strong>WOW, {"usernamehere"}! You have attended {events.length} concerts!</strong>
+              </Typography>
+            </Paper>
             <Grid item xs={6}>
               <Paper className={classes.paper}>
                 <ArtistsTotal />
@@ -279,14 +290,7 @@ export default function PastEvents() {
               spacing={3}
               justify="center"
               style={{ margin: 8 }}
-            >
-              <Paper className={classes.paper}>
-                <Typography>
-                  Congratulations, {"usernamehere"}! You have attended a grand
-                  total of {events.length} concerts!
-                </Typography>
-              </Paper>
-            </Grid>
+            ></Grid>
           </Grid>
           <Box pt={4}>
             <Copyright />

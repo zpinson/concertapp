@@ -38,9 +38,9 @@ export default {
     return axios.post("/api/pastevents", pastEventData);
   },
   getArtistTotal: function () {
-    return axios.get("api/stats/");
+    return axios.get("api/stats/artists");
   },
   getStatesTotal: function () {
-    return axios.get("api/stats/");
+    return axios.get("api/stats/states");
   },
 };

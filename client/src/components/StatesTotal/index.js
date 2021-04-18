@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Paper, Typography } from "@material-ui/core";
 import { Pie } from "react-chartjs-2";
 import API from "../../utils/API";
 
@@ -35,7 +36,7 @@ const StatesTotal = () => {
               label: "myConcerts by State/Region",
               data: statesShows,
               backgroundColor: ["rgba(75, 192, 192, 0.6)"],
-              borderWidth: 4,
+              borderWidth: 0,
             },
           ],
         });
@@ -49,60 +50,77 @@ const StatesTotal = () => {
     chartState();
   }, []);
 
+const format = {
+  labels: statesName,
+  datasets: [
+    {
+      label: statesName,
+      backgroundColor: [
+        "#B21F00",
+        "#C9DE00",
+        "#2FDE00",
+        "#00A6B4",
+        "#6800B4",
+        "#ffafbd",
+        "#2193b0",
+        "#bdc3c7",
+        "#ffc3a0",
+        "#6dd5ed",
+        "#6dd5ed",
+        "#cc2b5e",
+        "#753a88",
+        "#734b6d",
+        "#2c3e50",
+        "#42275a",
+        "#48b1bf",
+        "#06beb6",
+        "#06beb6",
+        "#ef629f",
+      ],
+      hoverBackgroundColor: [
+        "#501800",
+        "#4B5000",
+        "#175000",
+        "#003350",
+        "#35014F",
+        "#ffafbd",
+        "#2193b0",
+        "#bdc3c7",
+        "#ffc3a0",
+        "#6dd5ed",
+        "#6dd5ed",
+        "#cc2b5e",
+        "#753a88",
+        "#734b6d",
+        "#2c3e50",
+        "#42275a",
+        "#48b1bf",
+        "#06beb6",
+        "#06beb6",
+        "#ef629f",
+      ],
+      data: statesShows,
+    },
+  ],
+};
+
   return (
     <div>
+      <Typography style={{fontSize: 32, color: "gray"}}><strong>myConcerts by State/Region</strong></Typography><br />
       <Pie
-        data={{
-          labels: statesName,
-          datasets: [
-            {
-              label: "# of votes",
-              data: statesShows,
-              backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(153, 102, 255, 0.2)",
-                "rgba(255, 159, 64, 0.2)",
-              ],
-              borderColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-                "rgba(153, 102, 255, 1)",
-                "rgba(255, 159, 64, 1)",
-              ],
-              borderWidth: 1,
-            },
-            // {
-            //   label: 'Quantity',
-            //   data: [47, 52, 67, 58, 9, 50],
-            //   backgroundColor: 'orange',
-            //   borderColor: 'red',
-            // },
-          ],
-        }}
-        height={400}
-        width={600}
+        data={format}
         options={{
-          maintainAspectRatio: false,
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                },
-              },
-            ],
-          },
+          // title: {
+          //   display: true,
+          //   text: "myConcerts by State/Region",
+          //   fontSize: 32,
+          // },
           legend: {
-            labels: {
-              fontSize: 25,
-            },
+            display: true,
+            position: "right",
           },
         }}
+        style={{ height: "400" }}
       />
     </div>
   );
