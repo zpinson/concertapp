@@ -5,6 +5,8 @@ module.exports = {
   findAll: function(req, res) {
     db.User
       .find({})
+      .populate("events")
+      
       // .sort({ date: -1 })
       .then(dbResults => res.json(dbResults))
       .catch(err => res.status(422).json(err));
