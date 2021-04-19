@@ -268,6 +268,15 @@ export default function PastEvents() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          <Grid container justify="center">
+            <Grid item align="center" xs={9}>
+              <Paper className={classes.resPaper}>
+                <Typography variant="h4" style={{ align: "center" }}>
+                  <strong>myPastEvents</strong>
+                </Typography>
+              </Paper>
+            </Grid>
+          </Grid>
           {events ? (
             <div>
               {events.map((event) => (

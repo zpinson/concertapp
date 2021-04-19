@@ -269,11 +269,12 @@ export default function PastEvents() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container justify="center">
-            <Paper className={classes.resPaper}>
+            <Paper className={classes.resPaper} style={{ marginBottom: 15}}>
               <Typography variant="h4" style={{alignItems: "center"}}>
-                <strong>WOW, {"usernamehere"}! You have attended {events.length} concerts!</strong>
+                <strong>WOW! You have attended {events.length} concerts!</strong>
               </Typography>
             </Paper>
+            
             <Grid item xs={6}>
               <Paper className={classes.paper}>
                 <ArtistsTotal />
