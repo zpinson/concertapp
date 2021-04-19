@@ -167,7 +167,11 @@ export default function User2Profile() {
     console.log(id);
     API.deleteEvent(id).then((res) => getSavedEvents());
   }
-
+  const handleLogout = () => {
+    API.logout()
+      .then(console.log("success!!!!"))
+      .catch((err) => console.log(err));
+  };
   useEffect(() => {
     getSavedEvents();
   }, []);
@@ -242,7 +246,7 @@ export default function User2Profile() {
             </ListItemIcon>
             <ListItemText>myUpcomingEvents</ListItemText>
           </ListItem>
-          <ListItem button component="a" href="/pastevents">
+          <ListItem button component="a" href="/pastevents" >
             <ListItemIcon>
               <EventBusyIcon />
             </ListItemIcon>
@@ -257,7 +261,7 @@ export default function User2Profile() {
         </List>
         <Divider />
         <List>
-          <ListItem button component="a" href="/">
+          <ListItem button component="a" href="/" onClick={() => handleLogout()}>
             <ListItemIcon>
               <ExitToAppIcon color="inherit" />
             </ListItemIcon>

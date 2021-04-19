@@ -53,5 +53,9 @@ export default {
   }, isLoggedIn: function (loginData) {
     console.log(loginData)
     return axios.get("/api/login", loginData);
+  },
+  logout: function () {
+    console.log()
+    return axios.post("/api/logout");
   }
 };

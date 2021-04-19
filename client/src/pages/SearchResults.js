@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { EventList, EventListItem } from "../components/EventList";
 import MainNav from "../components/MainNav";
 import Footer from "../components/Footer";
@@ -6,14 +6,29 @@ import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 import moment from "moment";
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+        DSD Designs
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 class SearchResults extends Component {
   state = {
     search: "",
     events: [],
     past: false,
-    isLoggedIn: true
+    isLoggedIn: true,
+    artistImg: {},
   };
 
   handleInputChange = (event) => {
@@ -26,13 +41,30 @@ class SearchResults extends Component {
 
   handleLoggedIn = () => {
     API.isLoggedIn()
-    .then(this.state.isLoggedIn === true)
+      .then(this.state.isLoggedIn === true)
       .then(console.log("success!!!!"))
       .catch((err) => console.log(err));
   };
 
+  handleGetImage = () => {
+    API.getEvent(this.state.search)
+    .then((res) => {
+      console.log("res.data: ", res.data[0].artist.thumb_url);
+      this.setState({ artistImg: res.data[0].artist.thumb_url});
+    })
+  }
+
+   handleGetImage = () => {
+      API.getEvent(this.state.search).then((res) => {
+        console.log("res.data: ", res.data[0].artist.thumb_url);
+        this.setState({ artistImg: res.data[0].artist.thumb_url });
+      });
+    };
+
   handleFormSubmit = (event) => {
     event.preventDefault();
+    
+
     if (this.state.past === false) {
       API.getEvent(this.state.search)
         .then((res) => {
@@ -67,7 +99,6 @@ class SearchResults extends Component {
             };
             console.log(eventObj);
             return eventObj;
-            return artistImg;
           });
           console.log(events);
           this.setState({ events: events });
@@ -117,7 +148,6 @@ class SearchResults extends Component {
             };
             console.log(eventObj);
             return eventObj;
-            return artistImg;
           });
           console.log(events);
           this.setState({ events: events });
@@ -170,16 +200,22 @@ class SearchResults extends Component {
     return (
       <div>
         <MainNav />
-        <SearchForm
-          handleFormSubmit={this.handleFormSubmit}
-          handleInputChange={this.handleInputChange}
-          handleCheckedChange={this.handleCheckedChange}
-          handleLoggedIn={this.handleLoggedIn}
-          search={this.state.search}
-        />
-        <div className="container" style={{ justifyContent: "center" }}>
+        <Grid container justify="space-evenly">
+          <Grid item xs={4}>
+            <SearchForm
+              handleFormSubmit={this.handleFormSubmit}
+              handleInputChange={this.handleInputChange}
+              handleCheckedChange={this.handleCheckedChange}
+              handleLoggedIn={this.handleLoggedIn}
+              search={this.state.search}
+            />
+          </Grid>
+        </Grid>
+        <div className="container" style={{ justifyContent: "center", maxHeight: 150 }}>
           {this.state.events ? (
-            <EventList className="overflow-container">
+            <EventList
+              style={{ maxHeight: "100", overflow: "auto"}}
+            >
               {this.state.events.map((event) => (
                 <EventListItem key={event.id}>
                   <Grid
@@ -220,19 +256,23 @@ class SearchResults extends Component {
                       Directions
                     </Button>
 
-                    {this.state.isLoggedIn ? <Button
-                      onClick={() => this.handleEventSave(event.id)}
-                      className="btn"
-                      style={{ color: "white" }}
-                    >
-                      RSVP
-                    </Button> : <Button
-                      href="/login"
-                      className="btn"
-                      style={{ color: "white" }}
-                    >
-                      Sing up to RSVP
-                    </Button>}
+                    {this.state.isLoggedIn ? (
+                      <Button
+                        onClick={() => this.handleEventSave(event.id)}
+                        className="btn"
+                        style={{ color: "white" }}
+                      >
+                        RSVP
+                      </Button>
+                    ) : (
+                      <Button
+                        href="/login"
+                        className="btn"
+                        style={{ color: "white" }}
+                      >
+                        Sign up to RSVP
+                      </Button>
+                    )}
                   </Grid>
                 </EventListItem>
               ))}
@@ -241,10 +281,13 @@ class SearchResults extends Component {
             <h3>No Results to Display</h3>
           )}
         </div>
-        <Footer />
+        <Footer>
+          <Copyright />
+        </Footer>
       </div>
     );
   }
 }
+
 
 export default SearchResults;
