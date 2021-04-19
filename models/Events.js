@@ -14,7 +14,7 @@ const eventSchema = new Schema({
   artistImg: { type: String, required: false, unique: false }
 });
 
-const Event = mongoose.model("event", eventSchema);
+const Event = mongoose.model("Event", eventSchema);
 
 module.exports = Event;
 

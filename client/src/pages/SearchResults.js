@@ -6,13 +6,15 @@ import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import moment from 'moment';
+import moment from "moment";
+
 
 class SearchResults extends Component {
   state = {
     search: "",
     events: [],
     past: false,
+    isLoggedIn: true
   };
 
   handleInputChange = (event) => {
@@ -22,6 +24,17 @@ class SearchResults extends Component {
   handleCheckedChange = (event) => {
     this.setState({ past: event.target.checked });
   };
+
+  handleLoggedIn = () => {
+    API.isLoggedIn()
+    .then(this.state.isLoggedIn === true)
+      .then(console.log("success!!!!"))
+      .catch((err) => console.log(err));
+  };
+  // handleLoggedIn() {
+  //   API.isLoggedIn()
+  //   .then(this.state.isLoggedIn)
+  // }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -74,7 +87,12 @@ class SearchResults extends Component {
             console.log(event.lineup[0]);
             const id = event.id;
             const artist = event.lineup[0];
-            const location = event.venue.city + ", " + event.venue.region + " " + event.venue.country;
+            const location =
+              event.venue.city +
+              ", " +
+              event.venue.region +
+              " " +
+              event.venue.country;
             const venue = event.venue.name;
             const date = event.datetime.slice(0, 10);
             const time = event.datetime.slice(11, 16);
@@ -152,11 +170,12 @@ class SearchResults extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
           handleCheckedChange={this.handleCheckedChange}
+          handleLoggedIn={this.handleLoggedIn}
           search={this.state.search}
         />
         <div className="container" style={{ justifyContent: "center" }}>
           {this.state.events ? (
-            <EventList className="overflow-container" >
+            <EventList className="overflow-container">
               {this.state.events.map((event) => (
                 <EventListItem key={event.id}>
                   <Grid
@@ -169,42 +188,47 @@ class SearchResults extends Component {
                       <strong>{event.time}</strong>
                       <p>{event.date}</p>
                     </Grid>
-                    <Grid item style={{minWidth: 200, maxWidth: 250}}>
-                    <strong>{event.venue}</strong>
-                    <p>{event.location}</p>
+                    <Grid item style={{ minWidth: 200, maxWidth: 250 }}>
+                      <strong>{event.venue}</strong>
+                      <p>{event.location}</p>
                     </Grid>
 
-                      <Button
-                        component="a"
-                        href={event.eventUrl}
-                        target="_blank"
-                        className="btn"
-                      >
-                        More Info
-                      </Button>
+                    <Button
+                      component="a"
+                      href={event.eventUrl}
+                      target="_blank"
+                      className="btn"
+                    >
+                      More Info
+                    </Button>
 
-                      <Button
-                        component="a"
-                        href={
-                          "https://www.google.com/maps/search/?api=1&query=" +
-                          event.latitude +
-                          "," +
-                          event.longitude
-                        }
-                        target="_blank"
-                        className="btn"
-                      >
-                        Directions
-                      </Button>
+                    <Button
+                      component="a"
+                      href={
+                        "https://www.google.com/maps/search/?api=1&query=" +
+                        event.latitude +
+                        "," +
+                        event.longitude
+                      }
+                      target="_blank"
+                      className="btn"
+                    >
+                      Directions
+                    </Button>
 
-                      <Button
-                        onClick={() => this.handleEventSave(event.id)}
-                        className="btn"
-                        style={{ color: "white" }}
-                      >
-                        RSVP
-                      </Button>
-                   
+                    {this.state.isLoggedIn ? <Button
+                      onClick={() => this.handleEventSave(event.id)}
+                      className="btn"
+                      style={{ color: "white" }}
+                    >
+                      RSVP
+                    </Button> : <Button
+                      href="/login"
+                      className="btn"
+                      style={{ color: "white" }}
+                    >
+                      Sing up to RSVP
+                    </Button>}
                   </Grid>
                 </EventListItem>
               ))}

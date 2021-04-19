@@ -14,6 +14,6 @@ const pastEventSchema = new Schema({
   artistImg: { type: String, required: false, unique: false }
 });
 
-const PastEvent = mongoose.model("pastevent", pastEventSchema);
+const PastEvent = mongoose.model("PastEvent", pastEventSchema);
 
 module.exports = PastEvent;
