@@ -1,9 +1,11 @@
 const db = require("../models");
 
-// Defining methods for the bookController
+// Defining methods for the Controller
 module.exports = {
   findAll: function (req, res) {
-    db.PastEvent.find(req.query)
+    console.log("req: ", db.PastEvent);
+    db.PastEvent.find(req.query).sort({datetime: -1})
+    // find(req.query).sort({datetime: -1})
       .then((dbModel) => res.json(dbModel))
       .then(console.log(req.body))
       .catch((err) => res.status(422).json(err));

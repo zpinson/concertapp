@@ -8,7 +8,6 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import moment from "moment";
 
-
 class SearchResults extends Component {
   state = {
     search: "",
@@ -31,10 +30,6 @@ class SearchResults extends Component {
       .then(console.log("success!!!!"))
       .catch((err) => console.log(err));
   };
-  // handleLoggedIn() {
-  //   API.isLoggedIn()
-  //   .then(this.state.isLoggedIn)
-  // }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -49,6 +44,7 @@ class SearchResults extends Component {
             const artist = event.lineup[0];
             const location = event.venue.location;
             const venue = event.venue.name;
+            const datetime = event.datetime;
             const date = event.datetime.slice(0, 10);
             const time = event.datetime.slice(11, 16);
             const eventUrl = event.url;
@@ -61,6 +57,7 @@ class SearchResults extends Component {
               artist: artist,
               location: location,
               venue: venue,
+              datetime: datetime,
               date: moment(date).format("dddd, MMMM Do YYYY"),
               time: moment(time, "HH:mm").format("h:mm a"),
               eventUrl: eventUrl,
@@ -83,7 +80,7 @@ class SearchResults extends Component {
           const pastImg = res.data[0].artist.thumb_url;
           console.log(pastImg);
 
-          const events = res.data.map((event) => {
+          const events = res.data.reverse().map((event) => {
             console.log(event.lineup[0]);
             const id = event.id;
             const artist = event.lineup[0];
@@ -93,7 +90,9 @@ class SearchResults extends Component {
               event.venue.region +
               " " +
               event.venue.country;
+            const state = event.venue.region;
             const venue = event.venue.name;
+            const datetime = event.datetime;
             const date = event.datetime.slice(0, 10);
             const time = event.datetime.slice(11, 16);
             const eventUrl = event.url;
@@ -106,7 +105,9 @@ class SearchResults extends Component {
               id: id,
               artist: artist,
               location: location,
+              state: state,
               venue: venue,
+              datetime: datetime,
               date: moment(date).format("dddd, MMMM Do YYYY"),
               time: moment(time, "HH:mm").format("h:mm a"),
               eventUrl: eventUrl,
@@ -133,6 +134,7 @@ class SearchResults extends Component {
         artist_name: event.artist,
         location: event.location,
         venue_name: event.venue,
+        datetime: event.datetime,
         date: event.date,
         time: event.time,
         event_url: event.eventUrl,
@@ -147,7 +149,9 @@ class SearchResults extends Component {
       API.savePastEvent({
         artist_name: event.artist,
         location: event.location,
+        state: event.state,
         venue_name: event.venue,
+        datetime: event.datetime,
         date: event.date,
         time: event.time,
         event_url: event.eventUrl,
@@ -216,12 +220,14 @@ class SearchResults extends Component {
                       Directions
                     </Button>
 
+                    <Button
                     {this.state.isLoggedIn ? <Button
                       onClick={() => this.handleEventSave(event.id)}
                       className="btn"
                       style={{ color: "white" }}
                     >
                       RSVP
+                    </Button>
                     </Button> : <Button
                       href="/login"
                       className="btn"
