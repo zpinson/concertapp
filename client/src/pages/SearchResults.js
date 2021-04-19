@@ -200,7 +200,7 @@ class SearchResults extends Component {
     return (
       <div>
         <MainNav />
-        <Grid container>
+        <Grid container justify="space-evenly">
           <Grid item xs={4}>
             <SearchForm
               handleFormSubmit={this.handleFormSubmit}
