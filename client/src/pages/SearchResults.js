@@ -8,6 +8,8 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import moment from "moment";
 
+// const passport = require("../../../passport/index")
+
 class SearchResults extends Component {
   state = {
     search: "",
@@ -24,7 +26,7 @@ class SearchResults extends Component {
     this.setState({ past: event.target.checked });
   };
 
-  handleLoggedIn = (email) => {
+  handleLoggedIn = () => {
     API.isLoggedIn()
     .then(this.state.isLoggedIn === true)
       .then(console.log("success!!!!"))

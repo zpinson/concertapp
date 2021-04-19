@@ -1,6 +1,6 @@
 const passport = require("passport");
 const db = require("../models");
-// const passport = require("../passport/index")
+const passportid = require("../passport/index")
 
 // Defining methods for the eventController
 module.exports = {
@@ -17,13 +17,13 @@ module.exports = {
   },
   create: function (req, res) {
     db.Event.create(req.body)
-    .then(({_id}) => db.User.findOneAndUpdate({ _id: req.params.id }, { $push: { Event: _id } }, { new: true }))
+    .then(({_id}) => db.User.findOneAndUpdate({}, { $push: { Event: _id } }, { new: true }))
       .then((dbModel) => res.json(dbModel))
       .then(console.log(req.body))
       .catch((err) => res.status(422).json(err));
   },
   update: function (req, res) {
-    db.Event.findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.Event.findOneAndUpdate({passportid}, req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
