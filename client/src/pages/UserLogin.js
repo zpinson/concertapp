@@ -77,6 +77,8 @@ export default function UserLogin() {
       .then(console.log("success!!!!"))
       .catch((err) => console.log(err));
   };
+  console.log(loginEmail);
+  console.log(loginPassword);
 
   return (
     <Grid container component="main" className={classes.root}>

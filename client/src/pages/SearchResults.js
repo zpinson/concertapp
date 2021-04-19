@@ -8,12 +8,13 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import moment from "moment";
 
+
 class SearchResults extends Component {
   state = {
     search: "",
     events: [],
     past: false,
-    isLoggedIn: false
+    isLoggedIn: true
   };
 
   handleInputChange = (event) => {
@@ -23,6 +24,17 @@ class SearchResults extends Component {
   handleCheckedChange = (event) => {
     this.setState({ past: event.target.checked });
   };
+
+  handleLoggedIn = () => {
+    API.isLoggedIn()
+    .then(this.state.isLoggedIn === true)
+      .then(console.log("success!!!!"))
+      .catch((err) => console.log(err));
+  };
+  // handleLoggedIn() {
+  //   API.isLoggedIn()
+  //   .then(this.state.isLoggedIn)
+  // }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -158,6 +170,7 @@ class SearchResults extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
           handleCheckedChange={this.handleCheckedChange}
+          handleLoggedIn={this.handleLoggedIn}
           search={this.state.search}
         />
         <div className="container" style={{ justifyContent: "center" }}>
@@ -210,7 +223,7 @@ class SearchResults extends Component {
                     >
                       RSVP
                     </Button> : <Button
-                      onClick={() => this.handleEventSave(event.id)}
+                      href="/login"
                       className="btn"
                       style={{ color: "white" }}
                     >

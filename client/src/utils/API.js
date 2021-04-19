@@ -44,5 +44,8 @@ export default {
   login: function (loginData) {
     console.log(loginData)
     return axios.post("/api/login", loginData);
+  }, isLoggedIn: function (loginData) {
+    console.log(loginData)
+    return axios.get("/api/login", loginData);
   }
 };
