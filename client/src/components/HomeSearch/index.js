@@ -24,8 +24,8 @@ const useStyles = makeStyles({
     backgroundColor: "grey",
   },
   infotext: {
-    fontStyle: "italic"
-  }
+    fontStyle: "italic",
+  },
 });
 
 export default function HomeSearch() {
@@ -51,17 +51,21 @@ export default function HomeSearch() {
           />
           <CardContent className={classes.alignItemsAndJustifyContent}>
             <Typography className={classes.infotext}>
-              <strong><p>
-                myConcerts is a program designed with the music lover in mind
-                and heart. Using API calls and database storage, we provide the
-                user with the ability to search for upcoming events using the
-                artist's name.
-                <p></p>
-                Sign-up with an account today to be able to store your favorite
-                artists for easy future reference as well as RSVP to events you
-                wish to attend. The saved information will appear on your user
-                profile when you sign in again!
-              </p></strong>
+              <strong>
+                <p>
+                  myConcerts is a program designed with the music lover in mind
+                  and heart. Using API calls and database storage, we provide
+                  the user with the ability to search for upcoming events as
+                  well as past events using the artist's name.
+                  <p></p>
+                  Sign-up with an account today to be able to store your
+                  favorite artists for easy future reference as well as RSVP to
+                  events you wish to attend. You can also RSVP to events you
+                  have attended in the past for your memories! The saved
+                  information will appear on your user profile when you sign in
+                  again!
+                </p>
+              </strong>
             </Typography>
           </CardContent>
         </CardActionArea>

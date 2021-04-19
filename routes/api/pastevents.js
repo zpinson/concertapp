@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const pastEventController = require("../../controllers/pastEventController");
 
-router.route("/")
+router
+  .route("/")
   .get(pastEventController.findAll)
   .post(pastEventController.create);
 
