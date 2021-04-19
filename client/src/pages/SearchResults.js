@@ -220,7 +220,7 @@ class SearchResults extends Component {
                       Directions
                     </Button>
 
-                    {this.state.isLoggedIn ? <Button>
+                    {this.state.isLoggedIn ? <Button
                       onClick={() => this.handleEventSave(event.id)}
                       className="btn"
                       style={{ color: "white" }}
