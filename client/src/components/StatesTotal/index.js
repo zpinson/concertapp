@@ -106,7 +106,7 @@ const format = {
 
   return (
     <div>
-      <Typography style={{fontSize: 32, color: "gray"}}><strong>myConcerts by State/Region</strong></Typography><br />
+      <Typography style={{display: "flex", fontSize: 32, color: "gray"}}><strong>myConcerts by State/Region</strong></Typography><br />
       <Pie
         data={format}
         options={{

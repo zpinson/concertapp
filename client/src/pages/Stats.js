@@ -26,7 +26,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
-import HomeIcon from "@material-ui/icons/Home";
+import SearchIcon from "@material-ui/icons/Search";
 import DataUsageIcon from "@material-ui/icons/DataUsage";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import API from "../utils/API";
@@ -230,11 +230,11 @@ export default function PastEvents() {
         </div>
         <Divider />
         <List>
-          <ListItem button component="a" href="/">
+          <ListItem button component="a" href="/searchresult">
             <ListItemIcon>
-              <HomeIcon />
+              <SearchIcon />
             </ListItemIcon>
-            <ListItemText>Home</ListItemText>
+            <ListItemText>myConcerts:Search</ListItemText>
           </ListItem>
           <ListItem button component="a" href="/user">
             <ListItemIcon>
