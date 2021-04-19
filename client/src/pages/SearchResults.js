@@ -25,7 +25,7 @@ class SearchResults extends Component {
     this.setState({ past: event.target.checked });
   };
 
-  handleLoggedIn = () => {
+  handleLoggedIn = (email) => {
     API.isLoggedIn()
     .then(this.state.isLoggedIn === true)
       .then(console.log("success!!!!"))
