@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { BarElement } from "react-chartjs-2";
+import axios from "axios";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -28,6 +30,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import DataUsageIcon from "@material-ui/icons/DataUsage";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import API from "../utils/API";
+import ArtistsTotal from "../components/ArtistsTotal";
+import StatesTotal from "../components/StatesTotal";
 
 function Copyright() {
   return (
@@ -116,6 +120,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
+    minHeight: 450,
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
@@ -161,11 +166,6 @@ export default function PastEvents() {
         setEvents(res.data);
       })
       .catch((err) => console.log(err));
-  }
-
-  function handlePastEventDelete(id) {
-    console.log(id);
-    API.deletePastEvent(id).then((res) => getPastSavedEvents());
   }
 
   useEffect(() => {
@@ -268,104 +268,30 @@ export default function PastEvents() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          {events ? (
-            <div>
-              {events.map((event) => (
-                <Grid
-                  className="overflow-container"
-                  container
-                  direction="row"
-                  spacing={3}
-                  key={event.id}
-                >
-                  <Grid item xs={12}>
-                    <Paper className={classes.resPaper} elevation={5}>
-                      <Grid
-                        container
-                        justify="space-between"
-                        alignItems="center"
-                        spacing={3}
-                      >
-                        <Grid item>
-                          {/* <Card className={classes.card} variant="outlined" style={{margin: 5}}>
-                            <CardContent className={classes.artistCard}> */}
-                          <Typography variant="h6" component="h2">
-                            <img
-                              src={event.artistImg}
-                              className={classes.artistCard}
-                            ></img>
-                          </Typography>
-                          {/* </CardContent>
-                          </Card> */}
-                          <Typography
-                            className={classes.eventText}
-                            component="h2"
-                          >
-                            <strong>{event.artist_name}</strong>
-                          </Typography>
-                        </Grid>
-                        <Grid wrap="nowrap" item className={classes.artistCard}>
-                          <Typography
-                            className={classes.eventText}
-                            component="h2"
-                            variant="h5"
-                          >
-                            <strong>{event.venue_name}</strong>
-                          </Typography>
-                          <Typography
-                            className={classes.eventText}
-                            component="h2"
-                          >
-                            {event.location}
-                          </Typography>
-                        </Grid>
-                        <Grid item className={classes.artistCard}>
-                          <Typography
-                            className={classes.eventText}
-                            component="h2"
-                          >
-                            <strong>{event.time}</strong>
-                          </Typography>
-                          <Typography
-                            className={classes.eventText}
-                            component="h2"
-                          >
-                            {event.date}
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                      <p></p>
-                      <Grid container justify="center" spacing={4}>
-                        <Grid item>
-                          <Button
-                            size="small"
-                            variant="contained"
-                            color="primary"
-                            href={event.event_url}
-                            target="_blank"
-                          >
-                            More Info
-                          </Button>
-                        </Grid>
-                        <Grid item>
-                          <Button
-                            onClick={() => handlePastEventDelete(event._id)}
-                            size="small"
-                            variant="contained"
-                            color="primary"
-                          >
-                            Remove Event
-                          </Button>
-                        </Grid>
-                      </Grid>
-                    </Paper>
-                  </Grid>
-                </Grid>
-              ))}
-            </div>
-          ) : (
-            <h3>No Results to Display</h3>
-          )}
+          <Grid container justify="center">
+            <Paper className={classes.resPaper}>
+              <Typography variant="h4" style={{alignItems: "center"}}>
+                <strong>WOW, {"usernamehere"}! You have attended {events.length} concerts!</strong>
+              </Typography>
+            </Paper>
+            <Grid item xs={6}>
+              <Paper className={classes.paper}>
+                <ArtistsTotal />
+              </Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper className={classes.paper}>
+                <StatesTotal />
+              </Paper>
+            </Grid>
+            <Grid
+              item
+              xs={9}
+              spacing={3}
+              justify="center"
+              style={{ margin: 8 }}
+            ></Grid>
+          </Grid>
           <Box pt={4}>
             <Copyright />
           </Box>
