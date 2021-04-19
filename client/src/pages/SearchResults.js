@@ -13,6 +13,7 @@ class SearchResults extends Component {
     search: "",
     events: [],
     past: false,
+    isLoggedIn: true
   };
 
   handleInputChange = (event) => {
@@ -21,6 +22,13 @@ class SearchResults extends Component {
 
   handleCheckedChange = (event) => {
     this.setState({ past: event.target.checked });
+  };
+
+  handleLoggedIn = () => {
+    API.isLoggedIn()
+    .then(this.state.isLoggedIn === true)
+      .then(console.log("success!!!!"))
+      .catch((err) => console.log(err));
   };
 
   handleFormSubmit = (event) => {
@@ -166,6 +174,7 @@ class SearchResults extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
           handleCheckedChange={this.handleCheckedChange}
+          handleLoggedIn={this.handleLoggedIn}
           search={this.state.search}
         />
         <div className="container" style={{ justifyContent: "center" }}>
@@ -212,12 +221,20 @@ class SearchResults extends Component {
                     </Button>
 
                     <Button
+                    {this.state.isLoggedIn ? <Button
                       onClick={() => this.handleEventSave(event.id)}
                       className="btn"
                       style={{ color: "white" }}
                     >
                       RSVP
                     </Button>
+                    </Button> : <Button
+                      href="/login"
+                      className="btn"
+                      style={{ color: "white" }}
+                    >
+                      Sing up to RSVP
+                    </Button>}
                   </Grid>
                 </EventListItem>
               ))}

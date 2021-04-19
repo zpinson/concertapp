@@ -12,8 +12,8 @@ export default {
     console.log(query);
     return axios.get(BASEURL + query + APIKEY + PAST);
   },
-  // Gets all saved books
-  getSavedEvents: function () {
+
+  getSavedEvents: function() {
     return axios.get("/api/events");
   },
 
@@ -43,4 +43,15 @@ export default {
   getStatesTotal: function () {
     return axios.get("api/stats/states");
   },
+  signup: function (signupData) {
+    console.log(signupData)
+    return axios.post("/api/signup", signupData);
+  },
+  login: function (loginData) {
+    console.log(loginData)
+    return axios.post("/api/login", loginData);
+  }, isLoggedIn: function (loginData) {
+    console.log(loginData)
+    return axios.get("/api/login", loginData);
+  }
 };
