@@ -220,14 +220,12 @@ class SearchResults extends Component {
                       Directions
                     </Button>
 
-                    <Button
                     {this.state.isLoggedIn ? <Button
                       onClick={() => this.handleEventSave(event.id)}
                       className="btn"
                       style={{ color: "white" }}
                     >
                       RSVP
-                    </Button>
                     </Button> : <Button
                       href="/login"
                       className="btn"
