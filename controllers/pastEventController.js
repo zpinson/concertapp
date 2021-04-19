@@ -15,6 +15,7 @@ module.exports = {
   },
   create: function (req, res) {
     db.PastEvent.create(req.body)
+    .then(({_id}) => db.User.findOneAndUpdate({ _id: req.params.id }, { $push: { PastEvent: _id } }, { new: true }))
       .then((dbModel) => res.json(dbModel))
       .then(console.log(req.body))
       .catch((err) => res.status(422).json(err));
