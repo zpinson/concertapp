@@ -246,7 +246,7 @@ export default function User2Profile() {
             </ListItemIcon>
             <ListItemText>myUpcomingEvents</ListItemText>
           </ListItem>
-          <ListItem button component="a" href="/pastevents" >
+          <ListItem button component="a" href="/pastevents">
             <ListItemIcon>
               <EventBusyIcon />
             </ListItemIcon>
@@ -261,7 +261,12 @@ export default function User2Profile() {
         </List>
         <Divider />
         <List>
-          <ListItem button component="a" href="/" onClick={() => handleLogout()}>
+          <ListItem
+            button
+            component="a"
+            href="/"
+            onClick={() => handleLogout()}
+          >
             <ListItemIcon>
               <ExitToAppIcon color="inherit" />
             </ListItemIcon>
@@ -272,6 +277,16 @@ export default function User2Profile() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          <Grid container justify="center">
+          <Grid item align="center" xs={9}>
+          <Paper className={classes.resPaper}>
+            <Typography variant="h4" style={{ align: "center" }}>
+              <strong>
+                myUpcomingEvents
+              </strong>
+            </Typography>
+          </Paper>
+          </Grid></Grid>
           {events ? (
             <div>
               {events.map((event) => (

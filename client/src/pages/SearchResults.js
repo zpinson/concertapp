@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { EventList, EventListItem } from "../components/EventList";
 import MainNav from "../components/MainNav";
+import MainNavUser from "../components/MainNavUser";
 import Footer from "../components/Footer";
 import API from "../utils/API";
 import SearchForm from "../components/SearchForm";
@@ -27,7 +28,7 @@ class SearchResults extends Component {
     search: "",
     events: [],
     past: false,
-    isLoggedIn: true,
+    isLoggedIn: [],
     artistImg: {},
   };
 
@@ -41,7 +42,7 @@ class SearchResults extends Component {
 
   handleLoggedIn = () => {
     API.isLoggedIn()
-      .then(this.state.isLoggedIn === true)
+      .then(this.setState({isLoggedIn: true}))
       .then(console.log("success!!!!"))
       .catch((err) => console.log(err));
   };
@@ -199,7 +200,11 @@ class SearchResults extends Component {
     console.log(this.state.events);
     return (
       <div>
+      {(this.state.isLoggedIn === true) ? (
+        <MainNavUser />
+      ) : (
         <MainNav />
+        )}
         <Grid container justify="space-evenly">
           <Grid item xs={4}>
             <SearchForm
@@ -266,7 +271,7 @@ class SearchResults extends Component {
                       </Button>
                     ) : (
                       <Button
-                        href="/login"
+                        href="/signup"
                         className="btn"
                         style={{ color: "white" }}
                       >
